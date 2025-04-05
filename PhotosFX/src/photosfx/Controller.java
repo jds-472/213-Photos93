@@ -1,4 +1,4 @@
-package hellofx;
+package photosfx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
