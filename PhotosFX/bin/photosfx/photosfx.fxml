@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.Controller">
     <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -20,23 +20,26 @@
               <items>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="295.0">
+                        <VBox fx:id="stock4" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="295.0">
                            <children>
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <ImageView fx:id="stock0" fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/pacmanstock.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <Label text="Pacman" />
+                              <ImageView fx:id="stock2" fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/blinkystock.png" />
                                  </image>
                               </ImageView>
+                              <Label text="Blinky" />
                               <ImageView fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/clydestock.png" />
                                  </image>
                               </ImageView>
+                              <Label text="Clyde" />
                            </children>
                         </VBox>
                      </content>
@@ -45,16 +48,18 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0">
                            <children>
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <ImageView fx:id="stock1" fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/pinkystock.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <Label text="Pinky" />
+                              <ImageView fx:id="stock3" fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/inkystock.png" />
                                  </image>
                               </ImageView>
+                              <Label text="Inky" />
                            </children>
                         </VBox>
                      </content>
