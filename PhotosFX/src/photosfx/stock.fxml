@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.StockController">
     <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -28,12 +31,20 @@
                                  </image>
                               </ImageView>
                               <Label text="Pacman" />
-                              <ImageView fx:id="stock2" fitHeight="200.0" fitWidth="200.0">
+                              <HBox fx:id="photoOptions" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Add Tag" />
+                                    <Button mnemonicParsing="false" text="Remove Tag" />
+                                    <Button mnemonicParsing="false" text="Display" />
+                                    <Button mnemonicParsing="false" text="Caption This" />
+                                 </children>
+                              </HBox>
+                              <ImageView fx:id="stock1" fitHeight="200.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../../../data/blinkystock.png" />
+                                    <Image url="@../../../data/pinkystock.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Blinky" />
+                              <Label text="Pinky" />
                               <ImageView fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/clydestock.png" />
@@ -48,12 +59,12 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0">
                            <children>
-                              <ImageView fx:id="stock1" fitHeight="200.0" fitWidth="200.0">
+                              <ImageView fx:id="stock2" fitHeight="200.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../../../data/pinkystock.png" />
+                                    <Image url="@../../../data/blinkystock.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Pinky" />
+                              <Label text="Blinky" />
                               <ImageView fx:id="stock3" fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/inkystock.png" />
@@ -67,6 +78,26 @@
               </items>
             </SplitPane>
          </center>
+         <right>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.5" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Add Photo" />
+                  <Button mnemonicParsing="false" text="Remove Photo" />
+                  <Button mnemonicParsing="false" text="Copy Photo" />
+                  <Button mnemonicParsing="false" text="Move Photo" />
+                  <Button mnemonicParsing="false" text="Slideshow" />
+               </children>
+            </VBox>
+         </right>
+         <bottom>
+            <HBox prefHeight="20.0" prefWidth="800.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Region prefHeight="25.0" prefWidth="350.0" />
+                  <Button mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                  <Button mnemonicParsing="false" onAction="#quit" text="Quit" />
+               </children>
+            </HBox>
+         </bottom>
       </BorderPane>
     </children>
 </StackPane>

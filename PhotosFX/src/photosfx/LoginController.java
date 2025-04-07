@@ -16,19 +16,20 @@ public class LoginController {
 
     @FXML
     private TextField userField;
+    private StockController stockController = new StockController();
 
     public void enter(ActionEvent event) {
         if (event.getSource() == null) {
             System.out.println("Event source is null");
             return;
         }
-        System.out.println("Enter called");
         if (!userField.getText().isEmpty() && userField.getText().equals("stock")) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("photosfx.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("stock.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
+                //stockController.initialize();
             } catch (Exception e) {
                 e.printStackTrace();
             }

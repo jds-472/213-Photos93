@@ -10,9 +10,8 @@
 
 <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.LoginController">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="ALWAYS" maxWidth="560.0" minWidth="10.0" prefWidth="544.6666870117188" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.66668701171875" minWidth="10.0" prefWidth="45.33331298828125" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -20,12 +19,12 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Welcome to RU Photos Store" GridPane.columnIndex="1">
+      <Label text="Welcome to RU Photo Store">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="userField" promptText="Username:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="enter" mnemonicParsing="false" onAction="#enter" text="enter" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <TextField fx:id="userField" promptText="Username:" GridPane.rowIndex="1" />
+      <Button fx:id="enter" mnemonicParsing="false" onAction="#enter" text="enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>
