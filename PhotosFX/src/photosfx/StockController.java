@@ -28,7 +28,6 @@ public class StockController {
 
     public void initialize() {
         label.setText("Stock");
-        photoOptions.setDisable(true);
     }
 
     public void logOut(ActionEvent event) {
