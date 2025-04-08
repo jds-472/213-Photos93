@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="photosfx.UserController">
+    <top>
+        <Label text="Welcome to Photo Album" style="-fx-font-size: 16px; -fx-font-weight: bold;" BorderPane.alignment="CENTER" />
+    </top>
+
+    <center>
+        <ListView fx:id="albumList" prefHeight="300" prefWidth="400" />
+    </center>
+
+    <bottom>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <HBox spacing="10" alignment="CENTER">
+                <TextField fx:id="albumNameField" promptText="Album name" />
+                <Button text="Create" onAction="#createAlbum" />
+                <Button text="Delete" onAction="#deleteAlbum" />
+                <Button text="Rename" onAction="#renameAlbum" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Open Album" onAction="#openAlbum" />
+                <Button text="Logout" onAction="#logout" />
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

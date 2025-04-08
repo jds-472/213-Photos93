@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="photosfx.AdminController">
+    <Label text="Admin Portal" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+    
+    <ListView fx:id="userList" prefHeight="200" prefWidth="250" />
+
+    <HBox spacing="10">
+        <TextField fx:id="usernameField" promptText="Enter new username" />
+        <Button text="Create User" onAction="#createUser" />
+    </HBox>
+
+    <Button text="Delete Selected User" onAction="#deleteUser" />
+    <Button text="Logout" onAction="#logout" />
+</VBox>
