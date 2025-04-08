@@ -46,7 +46,14 @@ public class LoginController {
                     e.printStackTrace();
                 }
             } else {
-                //TODO: Load regular user view later
+                try {
+                    root = FXMLLoader.load(getClass().getResource("user.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }  
     }
