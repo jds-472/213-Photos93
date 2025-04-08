@@ -24,16 +24,30 @@ public class LoginController {
 
     public void enter(ActionEvent event) {
         System.out.println("called");
-        if (!userField.getText().isEmpty() && userField.getText().equals("stock")) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("stock.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
+        String user = userField.getText().trim();
+        Parent root = null;
+        if (!user.isEmpty()) {
+            if (user.equals("stock")) {
+                try {
+                    root = FXMLLoader.load(getClass().getResource("stock.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (user.equals("admin")) {
+                try {
+                    root = FXMLLoader.load(getClass().getResource("admin.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                //TODO: Load regular user view later
             }
-        }
-
+        }  
     }
 }
