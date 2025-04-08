@@ -23,7 +23,7 @@
               <items>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <VBox fx:id="stock4" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="295.0">
+                        <VBox fx:id="leftBox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="295.0" spacing="5.0">
                            <children>
                               <ImageView fx:id="stock0" fitHeight="200.0" fitWidth="200.0">
                                  <image>
@@ -33,10 +33,10 @@
                               <Label text="Pacman" />
                               <HBox fx:id="photoOptions" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Add Tag" />
-                                    <Button mnemonicParsing="false" text="Remove Tag" />
-                                    <Button mnemonicParsing="false" text="Display" />
-                                    <Button mnemonicParsing="false" text="Caption This" />
+                                    <Button fx:id="photoOption0" mnemonicParsing="false" text="Add Tag" />
+                                    <Button fx:id="photoOption1" mnemonicParsing="false" text="Remove Tag" />
+                                    <Button fx:id="photoOption2" mnemonicParsing="false" text="Display" />
+                                    <Button fx:id="photoOption3" mnemonicParsing="false" text="Caption This" />
                                  </children>
                               </HBox>
                               <ImageView fx:id="stock1" fitHeight="200.0" fitWidth="200.0">
@@ -45,7 +45,7 @@
                                  </image>
                               </ImageView>
                               <Label text="Pinky" />
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <ImageView fx:id="stock4" fitHeight="200.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../../../data/clydestock.png" />
                                  </image>
@@ -57,7 +57,7 @@
                   </ScrollPane>
                   <ScrollPane prefHeight="768.0" prefWidth="289.0">
                      <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0" spacing="5.0">
                            <children>
                               <ImageView fx:id="stock2" fitHeight="200.0" fitWidth="200.0">
                                  <image>
@@ -85,7 +85,7 @@
                   <Button mnemonicParsing="false" text="Remove Photo" />
                   <Button mnemonicParsing="false" text="Copy Photo" />
                   <Button mnemonicParsing="false" text="Move Photo" />
-                  <Button mnemonicParsing="false" text="Slideshow" />
+                  <Button mnemonicParsing="false" onAction="#slideShow" text="Slideshow" />
                </children>
             </VBox>
          </right>

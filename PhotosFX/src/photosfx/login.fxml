@@ -24,7 +24,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="userField" promptText="Username:" GridPane.rowIndex="1" />
+      <TextField fx:id="userField" onKeyPressed="#userFieldKeyPressed" promptText="Username:" GridPane.rowIndex="1" />
       <Button fx:id="enter" mnemonicParsing="false" onAction="#enter" text="enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>
