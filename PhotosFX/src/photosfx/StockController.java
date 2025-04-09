@@ -37,21 +37,21 @@ public class StockController {
         label.setText("Stock");
     }
 
-    private HBox createPhotoOptions() {
-        HBox newPhotoOptions = new HBox(5);
-        Button newbutton0 = new Button(photoOption0.getText());
-        Button newbutton1 = new Button(photoOption1.getText());
-        Button newbutton2 = new Button(photoOption2.getText());
-        Button newbutton3 = new Button(photoOption3.getText());
+    // private HBox createPhotoOptions() {
+    //     HBox newPhotoOptions = new HBox(5);
+    //     Button newbutton0 = new Button(photoOption0.getText());
+    //     Button newbutton1 = new Button(photoOption1.getText());
+    //     Button newbutton2 = new Button(photoOption2.getText());
+    //     Button newbutton3 = new Button(photoOption3.getText());
 
-        newbutton0.setOnAction(photoOption0.getOnAction());
-        newbutton1.setOnAction(photoOption1.getOnAction());
-        newbutton2.setOnAction(photoOption2.getOnAction());
-        newbutton3.setOnAction(photoOption3.getOnAction());
+    //     newbutton0.setOnAction(photoOption0.getOnAction());
+    //     newbutton1.setOnAction(photoOption1.getOnAction());
+    //     newbutton2.setOnAction(photoOption2.getOnAction());
+    //     newbutton3.setOnAction(photoOption3.getOnAction());
 
-        newPhotoOptions.getChildren().addAll(newbutton0, newbutton1, newbutton2, newbutton3);
-        return newPhotoOptions;
-    }
+    //     newPhotoOptions.getChildren().addAll(newbutton0, newbutton1, newbutton2, newbutton3);
+    //     return newPhotoOptions;
+    // }
 
     private void removePhotoOptions()
     {
