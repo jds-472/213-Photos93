@@ -25,12 +25,16 @@
                      <content>
                         <VBox fx:id="leftBox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="295.0" spacing="5.0">
                            <children>
-                              <ImageView fx:id="stock0" fitHeight="200.0" fitWidth="200.0">
-                                 <image>
-                                    <Image url="@../../../data/pacmanstock.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Pacman" />
+                              <VBox fx:id="pictureBox" alignment="CENTER" onMouseReleased="#showOptions" prefHeight="200.0" prefWidth="341.0">
+                                 <children>
+                                    <ImageView fx:id="stock" fitHeight="200.0" fitWidth="200.0">
+                                       <image>
+                                          <Image url="@../../../data/pacmanstock.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="Pacman" />
+                                 </children>
+                              </VBox>
                               <HBox fx:id="photoOptions" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Button fx:id="photoOption0" mnemonicParsing="false" text="Add Tag" />
@@ -57,7 +61,7 @@
                   </ScrollPane>
                   <ScrollPane prefHeight="768.0" prefWidth="289.0">
                      <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0" spacing="5.0">
+                        <VBox fx:id="rightBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0" spacing="5.0">
                            <children>
                               <ImageView fx:id="stock2" fitHeight="200.0" fitWidth="200.0">
                                  <image>
