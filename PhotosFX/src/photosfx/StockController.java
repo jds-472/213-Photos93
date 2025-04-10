@@ -13,13 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
-
-
+import model.Photo;
 import java.util.ArrayList;
 
 public class StockController {
 
-    //@FXML
     @FXML private Label label;
     @FXML private ImageView stock;
     @FXML private Button photoOption0;
@@ -31,10 +29,31 @@ public class StockController {
     @FXML private VBox leftBox;
     @FXML private VBox rightBox;
     private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
-    //private ArrayList<Image> Images = new ArrayList<>();
+    private ArrayList<Photo> photos = new ArrayList<>();
+
+    //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
+    public StockController() {
+        photos.add(new Photo("getDate", "pacman", ".\\..\\..\\data\\pacmanstock.png"));
+        photos.add(new Photo("getDate", "blinky", ".\\..\\..\\data\\blinkystock.png"));
+        photos.add(new Photo("getDate", "pinky", ".\\..\\..\\data\\pinkystock.png"));
+        photos.add(new Photo("getDate", "inky", ".\\..\\..\\data\\inkystock.png"));
+        photos.add(new Photo("getDate", "clyde", ".\\..\\..\\data\\clydestock.png"));
+    }
 
     public void initialize() {
         label.setText("Stock");
+        leftBox.getChildren().removeAll();
+        rightBox.getChildren().removeAll();
+        for (int i = 0; i < stocks.size(); i++) {
+            ImageView stock = stocks.get(i);
+            stock.setOnMouseClicked(this::showOptions);
+            VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
+            if (i % 2 == 0) {
+                leftBox.getChildren().add(pictureContainer);
+            } else {
+                rightBox.getChildren().add(pictureContainer);
+            }
+        }
     }
 
     // private HBox createPhotoOptions() {
@@ -60,7 +79,7 @@ public class StockController {
                 VBox vbox = (VBox) node;
                 if (vbox.getChildren().contains(photoOptions)) {
                     vbox.getChildren().remove(photoOptions);
-                    break; // Exit the loop once the old photoOptions is removed
+                    return; // Exit the loop once the old photoOptions is removed
                 }
             }
         }
@@ -69,7 +88,7 @@ public class StockController {
                 VBox vbox = (VBox) node;
                 if (vbox.getChildren().contains(photoOptions)) {
                     vbox.getChildren().remove(photoOptions);
-                    break; // Exit the loop once the old photoOptions is removed
+                    return; // Exit the loop once the old photoOptions is removed
                 }
             }
         }
