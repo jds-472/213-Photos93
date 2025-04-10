@@ -18,6 +18,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        User stock = new User("stock");
+    
         launch(args);
     }
 }

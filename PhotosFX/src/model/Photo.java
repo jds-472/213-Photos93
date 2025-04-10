@@ -9,7 +9,7 @@ public class Photo {
     private String caption;
     private String pathName;
     private Image picture;
-    private Set<String> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     public Photo(String date, String caption, String pathName) {
         this.date = date;
@@ -34,7 +34,7 @@ public class Photo {
         return picture;
     }
 
-    public Set<String> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
