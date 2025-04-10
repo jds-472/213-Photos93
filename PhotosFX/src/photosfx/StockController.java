@@ -42,18 +42,18 @@ public class StockController {
 
     public void initialize() {
         label.setText("Stock");
-        leftBox.getChildren().removeAll();
-        rightBox.getChildren().removeAll();
-        for (int i = 0; i < stocks.size(); i++) {
-            ImageView stock = stocks.get(i);
-            stock.setOnMouseClicked(this::showOptions);
-            VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
-            if (i % 2 == 0) {
-                leftBox.getChildren().add(pictureContainer);
-            } else {
-                rightBox.getChildren().add(pictureContainer);
-            }
-        }
+        // leftBox.getChildren().removeAll();
+        // rightBox.getChildren().removeAll();
+        // for (int i = 0; i < stocks.size(); i++) {
+        //     ImageView stock = stocks.get(i);
+        //     stock.setOnMouseClicked(this::showOptions);
+        //     VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
+        //     if (i % 2 == 0) {
+        //         leftBox.getChildren().add(pictureContainer);
+        //     } else {
+        //         rightBox.getChildren().add(pictureContainer);
+        //     }
+        // }
     }
 
     // private HBox createPhotoOptions() {
