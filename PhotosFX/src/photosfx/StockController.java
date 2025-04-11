@@ -136,6 +136,22 @@ public class StockController {
         
     }
 
+    public void displayPhoto(ActionEvent event) {
+        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
+        Photo photo = photoMap.get(pictureContainer);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("display.fxml"));
+            Parent root = loader.load();
+            DisplayController displayController = loader.getController();
+            displayController.setPhoto(photo);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void slideShow(ActionEvent event) {
         leftBox.getChildren().remove(photoOptions);
         leftBox.getChildren().addAll(photoOptions);

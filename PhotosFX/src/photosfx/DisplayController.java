@@ -9,19 +9,20 @@ import javafx.stage.Stage;
 import model.Photo;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
+import javafx.fxml.FXML;
 
 public class DisplayController {
 
-    ImageView imageDisplay;
-    Label displayCaption;
+    @FXML ImageView imageDisplay;
+    @FXML Label displayCaption;
     
-    public void displayPhoto(Photo photo) {
+    public void setPhoto(Photo photo) {
         Image image = photo.getPicture();
         imageDisplay.setImage(image);
         displayCaption.setText(photo.getCaption());
     }
 
-    public void onAction(ActionEvent event) {
+    public void exitDisplay(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
             Scene scene = new Scene(loader.load());

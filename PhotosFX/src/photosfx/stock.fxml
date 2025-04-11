@@ -39,7 +39,7 @@
                                  <children>
                                     <Button fx:id="photoOption0" mnemonicParsing="false" text="Add Tag" />
                                     <Button fx:id="photoOption1" mnemonicParsing="false" text="Remove Tag" />
-                                    <Button fx:id="photoOption2" mnemonicParsing="false" text="Display" />
+                                    <Button fx:id="photoOption2" mnemonicParsing="false" onAction="#displayPhoto" text="Display" />
                                     <Button fx:id="photoOption3" mnemonicParsing="false" onAction="#captionPhoto" text="Caption This" />
                                  </children>
                               </HBox>
