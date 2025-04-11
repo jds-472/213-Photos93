@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import model.Photo;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,11 +45,11 @@ public class StockController {
     }
 
     public void initialize() {
-        photos.add(new Photo("getDate", "pacman", getClass().getResource("/data/pacmanstock.png").toExternalForm()));
-        photos.add(new Photo("getDate", "blinky", getClass().getResource("/data/blinkystock.png").toExternalForm()));
-        photos.add(new Photo("getDate", "pinky", getClass().getResource("/data/pinkystock.png").toExternalForm()));
-        photos.add(new Photo("getDate", "inky", getClass().getResource("/data/inkystock.png").toExternalForm()));
-        photos.add(new Photo("getDate", "clyde", getClass().getResource("/data/clydestock.png").toExternalForm()));
+        photos.add(new Photo("getDate", "pacman", new File("../data/pacmanstock.png").toURI().toString()));
+        photos.add(new Photo("getDate", "blinky", new File("../data/blinkystock.png").toURI().toString()));
+        photos.add(new Photo("getDate", "pinky", new File("../data/pinkystock.png").toURI().toString()));
+        photos.add(new Photo("getDate", "inky", new File("../data/inkystock.png").toURI().toString()));
+        photos.add(new Photo("getDate", "clyde", new File("../data/clydestock.png").toURI().toString()));
         label.setText("Stock");
         leftBox.getChildren().clear();
         rightBox.getChildren().clear();

@@ -29,7 +29,7 @@
                                  <children>
                                     <ImageView fx:id="stock" fitHeight="200.0" fitWidth="200.0">
                                        <image>
-                                          <Image url="@../data/pacmanstock.png" />
+                                          <Image url="@../../../data/pacmanstock.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Pacman" />
@@ -45,13 +45,13 @@
                               </HBox>
                               <ImageView fx:id="stock1" fitHeight="200.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../data/pinkystock.png" />
+                                    <Image url="@../../../data/pinkystock.png" />
                                  </image>
                               </ImageView>
                               <Label text="Pinky" />
                               <ImageView fx:id="stock4" fitHeight="200.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../data/clydestock.png" />
+                                    <Image url="@../../../data/clydestock.png" />
                                  </image>
                               </ImageView>
                               <Label text="Clyde" />
@@ -65,13 +65,13 @@
                            <children>
                               <ImageView fx:id="stock2" fitHeight="200.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../data/blinkystock.png" />
+                                    <Image url="@../../../data/blinkystock.png" />
                                  </image>
                               </ImageView>
                               <Label text="Blinky" />
                               <ImageView fx:id="stock3" fitHeight="200.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../data/inkystock.png" />
+                                    <Image url="@../../../data/inkystock.png" />
                                  </image>
                               </ImageView>
                               <Label text="Inky" />
