@@ -28,32 +28,34 @@ public class StockController {
     @FXML private VBox pictureBox;
     @FXML private VBox leftBox;
     @FXML private VBox rightBox;
-    private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
+    // private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
     private ArrayList<Photo> photos = new ArrayList<>();
 
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
     public StockController() {
-        photos.add(new Photo("getDate", "pacman", ".\\..\\..\\data\\pacmanstock.png"));
+    }
+
+    public void initialize() {
+        photos.add(new Photo("getDate", "pacman", "data/pacmanstock.png"));
         photos.add(new Photo("getDate", "blinky", ".\\..\\..\\data\\blinkystock.png"));
         photos.add(new Photo("getDate", "pinky", ".\\..\\..\\data\\pinkystock.png"));
         photos.add(new Photo("getDate", "inky", ".\\..\\..\\data\\inkystock.png"));
         photos.add(new Photo("getDate", "clyde", ".\\..\\..\\data\\clydestock.png"));
-    }
-
-    public void initialize() {
         label.setText("Stock");
-        // leftBox.getChildren().removeAll();
-        // rightBox.getChildren().removeAll();
-        // for (int i = 0; i < stocks.size(); i++) {
-        //     ImageView stock = stocks.get(i);
-        //     stock.setOnMouseClicked(this::showOptions);
-        //     VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
-        //     if (i % 2 == 0) {
-        //         leftBox.getChildren().add(pictureContainer);
-        //     } else {
-        //         rightBox.getChildren().add(pictureContainer);
-        //     }
-        // }
+        leftBox.getChildren().removeAll();
+        rightBox.getChildren().removeAll();
+        for (int i = 0; i < photos.size(); i++) {
+            ImageView stock = new ImageView(photos.get(i).getPicture());
+            stock.setFitHeight(200);
+            stock.setFitWidth(200);
+            stock.setOnMouseClicked(this::showOptions);
+            VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
+            if (i % 2 == 0) {
+                leftBox.getChildren().add(pictureContainer);
+            } else {
+                rightBox.getChildren().add(pictureContainer);
+            }
+        }
     }
 
     // private HBox createPhotoOptions() {
