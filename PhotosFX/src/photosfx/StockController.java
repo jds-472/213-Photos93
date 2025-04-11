@@ -113,8 +113,14 @@ public class StockController {
         pictureContainer.getChildren().add(photoOptions);
     }
 
+    public void addTag(ActionEvent event)
+    {
+        //create popup to list current tags to select from and add new tags
+        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
+        Photo photo = photoMap.get(pictureContainer);
+    }
+
     public void captionPhoto(ActionEvent event) {
-        System.out.println("called it just doesnt do anything xd");
         VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
         Label captionLabel = (Label) pictureContainer.getChildren().get(1);
         Photo photo = photoMap.get(pictureContainer);

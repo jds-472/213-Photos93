@@ -54,6 +54,10 @@ public class Photo {
         this.picture = picture;
     }
 
-    
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
+
+
 
 }
