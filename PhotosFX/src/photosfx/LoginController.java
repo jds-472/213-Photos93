@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import model.User;
 
 
 public class LoginController {
@@ -29,7 +30,10 @@ public class LoginController {
         if (!user.isEmpty()) {
             if (user.equals("stock")) {
                 try {
-                    root = FXMLLoader.load(getClass().getResource("stock.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
+                    root = loader.load();
+                    UserController userController = loader.getController();
+                    userController.setUser(User.getUser(user));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(new Scene(root));
                     stage.show();

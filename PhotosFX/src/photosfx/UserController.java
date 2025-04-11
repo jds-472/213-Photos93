@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import model.User;
+import model.Album;
+import java.util.Set;
 
 public class UserController {
 
@@ -17,10 +20,19 @@ public class UserController {
     @FXML private TextField albumNameField;
 
     private ObservableList<String> albums;
+    private Set<Album> userAlbums;
+
+    public void setUser(User user) {
+        userAlbums = user.getAlbums();
+        // Set user name in the UI if needed
+    }
 
     public void initialize() {
         // Load user albums from model later
-        albums = FXCollections.observableArrayList("Vacation 2023", "Family", "Graduation");
+        albums = FXCollections.observableArrayList();
+        for (Album album : userAlbums) {
+            albums.add(album.getName());
+        }
         albumList.setItems(albums);
     }
 
