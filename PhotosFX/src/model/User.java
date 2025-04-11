@@ -29,4 +29,24 @@ public class User {
         }
         return null;
     }
+
+    public static void addUser(User user) {
+        users.add(user);
+    }
+
+    public static void removeUser(User user) {
+        users.remove(user);
+    }
+
+    public void addAlbum(Album album) {
+        albums.add(album);
+    }
+
+    public void removeAlbum(Album album) {
+        albums.remove(album);
+    }
+
+    public String toString() {
+        return name;
+    }
 }

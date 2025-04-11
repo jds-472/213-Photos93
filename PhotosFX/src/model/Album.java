@@ -11,6 +11,11 @@ public class Album {
         this.name = name;
     }
 
+    public Album(String name, Set<Photo> photos) {
+        this.name = name;
+        this.photos = photos;
+    }
+
     public String getName() {
         return name;
     }

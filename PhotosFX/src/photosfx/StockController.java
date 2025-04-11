@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import model.Photo;
 import model.Tag;
+import model.Album;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,7 +38,9 @@ public class StockController {
     @FXML private VBox leftBox;
     @FXML private VBox rightBox;
     // private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
-    private ArrayList<Photo> photos = new ArrayList<>();
+    private ArrayList<Photo> photos;
+
+    private Album album;
 
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
@@ -45,12 +48,10 @@ public class StockController {
     public StockController() {
     }
 
-    public void initialize() {
-        photos.add(new Photo("getDate", "pacman", new File("../data/pacmanstock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "blinky", new File("../data/blinkystock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "pinky", new File("../data/pinkystock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "inky", new File("../data/inkystock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "clyde", new File("../data/clydestock.png").toURI().toString()));
+    public void setAlbum(Album album)
+    {
+        this.album = album;
+        photos = new ArrayList<>(album.getPhotos());
         label.setText("Stock");
         leftBox.getChildren().clear();
         rightBox.getChildren().clear();
@@ -69,6 +70,10 @@ public class StockController {
                 rightBox.getChildren().add(pictureContainer);
             }
         }
+    }
+
+    public void initialize() {
+
     }
 
     private void removePhotoOptions()
@@ -179,7 +184,7 @@ public class StockController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("display.fxml"));
             Parent root = loader.load();
             DisplayController displayController = loader.getController();
-            displayController.setPhoto(photo);
+            displayController.setPhoto(photo, album);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

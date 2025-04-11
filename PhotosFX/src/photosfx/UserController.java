@@ -13,27 +13,33 @@ import javafx.event.ActionEvent;
 import model.User;
 import model.Album;
 import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserController {
 
     @FXML private ListView<String> albumList;
     @FXML private TextField albumNameField;
 
-    private ObservableList<String> albums;
+    private ObservableList<String> albums = FXCollections.observableArrayList();
     private Set<Album> userAlbums;
+    private Map<String, Album> albumMap = new HashMap<>(); // Map to store album names and their corresponding Album objects
+
+    
 
     public void setUser(User user) {
         userAlbums = user.getAlbums();
+        for (Album album : userAlbums) {
+            albums.add(album.getName());
+            albumMap.put(album.getName(), album); // Store the album in the map
+        }
+        albumList.setItems(albums);
         // Set user name in the UI if needed
     }
 
     public void initialize() {
         // Load user albums from model later
-        albums = FXCollections.observableArrayList();
-        for (Album album : userAlbums) {
-            albums.add(album.getName());
-        }
-        albumList.setItems(albums);
+        // albums = FXCollections.observableArrayList();
     }
 
     public void createAlbum(ActionEvent event) {
@@ -83,8 +89,17 @@ public class UserController {
     }
 
     public void openAlbum(ActionEvent event) {
-        // TODO: Replace with album viewing logic
-        showAlert("Opening album not implemented yet.");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
+            Parent root = loader.load();
+            StockController stockController = loader.getController();
+            stockController.setAlbum(albumMap.get(albumList.getSelectionModel().getSelectedItem()));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void logout(ActionEvent event) {

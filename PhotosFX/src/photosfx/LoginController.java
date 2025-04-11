@@ -24,13 +24,12 @@ public class LoginController {
     }
 
     public void enter(ActionEvent event) {
-        System.out.println("called");
         String user = userField.getText().trim();
         Parent root = null;
         if (!user.isEmpty()) {
             if (user.equals("stock")) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("user.fxml"));
                     root = loader.load();
                     UserController userController = loader.getController();
                     userController.setUser(User.getUser(user));
