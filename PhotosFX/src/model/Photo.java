@@ -38,4 +38,22 @@ public class Photo {
         return tags;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public void setPathName(String pathName) {
+        this.pathName = pathName;
+    }
+
+    public void setPicture(Image picture) {
+        this.picture = picture;
+    }
+
+    
+
 }

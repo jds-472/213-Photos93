@@ -15,6 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import model.Photo;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.scene.control.TextInputDialog;
+import java.util.Optional;
+import javafx.scene.control.*;
 
 public class StockController {
 
@@ -31,25 +36,30 @@ public class StockController {
     // private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
     private ArrayList<Photo> photos = new ArrayList<>();
 
+    private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
+
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
     public StockController() {
     }
 
     public void initialize() {
-        photos.add(new Photo("getDate", "pacman", "data/pacmanstock.png"));
-        photos.add(new Photo("getDate", "blinky", ".\\..\\..\\data\\blinkystock.png"));
-        photos.add(new Photo("getDate", "pinky", ".\\..\\..\\data\\pinkystock.png"));
-        photos.add(new Photo("getDate", "inky", ".\\..\\..\\data\\inkystock.png"));
-        photos.add(new Photo("getDate", "clyde", ".\\..\\..\\data\\clydestock.png"));
+        photos.add(new Photo("getDate", "pacman", getClass().getResource("/data/pacmanstock.png").toExternalForm()));
+        photos.add(new Photo("getDate", "blinky", getClass().getResource("/data/blinkystock.png").toExternalForm()));
+        photos.add(new Photo("getDate", "pinky", getClass().getResource("/data/pinkystock.png").toExternalForm()));
+        photos.add(new Photo("getDate", "inky", getClass().getResource("/data/inkystock.png").toExternalForm()));
+        photos.add(new Photo("getDate", "clyde", getClass().getResource("/data/clydestock.png").toExternalForm()));
         label.setText("Stock");
-        leftBox.getChildren().removeAll();
-        rightBox.getChildren().removeAll();
+        leftBox.getChildren().clear();
+        rightBox.getChildren().clear();
         for (int i = 0; i < photos.size(); i++) {
             ImageView stock = new ImageView(photos.get(i).getPicture());
             stock.setFitHeight(200);
             stock.setFitWidth(200);
-            stock.setOnMouseClicked(this::showOptions);
             VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
+            pictureContainer.spacingProperty().setValue(5);
+            pictureContainer.alignmentProperty().setValue(javafx.geometry.Pos.CENTER);
+            pictureContainer.setOnMouseClicked(this::showOptions);
+            photoMap.put(pictureContainer, photos.get(i));
             if (i % 2 == 0) {
                 leftBox.getChildren().add(pictureContainer);
             } else {
@@ -101,6 +111,23 @@ public class StockController {
         removePhotoOptions();
         VBox pictureContainer = (VBox) event.getSource();
         pictureContainer.getChildren().add(photoOptions);
+    }
+
+    public void captionPhoto(ActionEvent event) {
+        System.out.println("called it just doesnt do anything xd");
+        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
+        Label captionLabel = (Label) pictureContainer.getChildren().get(1);
+        Photo photo = photoMap.get(pictureContainer);
+        TextInputDialog dialog = new TextInputDialog(captionLabel.getText());
+        dialog.setTitle("Caption Photo");
+        Optional<String> result = dialog.showAndWait();
+        while(!result.isPresent() || result.get().equals("")) {
+            dialog.setContentText("Caption is invalid, try again");
+            result = dialog.showAndWait();
+        }
+        photo.setCaption(result.get());
+        captionLabel.setText(photo.getCaption());
+        
     }
 
     public void slideShow(ActionEvent event) {
