@@ -38,6 +38,14 @@ public class Photo {
         return tags;
     }
 
+    public Set<String> getTagsAsString() {
+        Set<String> tagStrings = new HashSet<>();
+        for (Tag tag : tags) {
+            tagStrings.add(tag.toString());
+        }
+        return tagStrings;
+    }
+
     public void setDate(String date) {
         this.date = date;
     }
@@ -56,6 +64,10 @@ public class Photo {
 
     public void addTag(Tag tag) {
         tags.add(tag);
+    }
+
+    public void removeTag(Tag tag) {
+        tags.remove(tag);
     }
 
 

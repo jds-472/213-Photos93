@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import model.Photo;
+import model.Tag;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -70,22 +71,6 @@ public class StockController {
         }
     }
 
-    // private HBox createPhotoOptions() {
-    //     HBox newPhotoOptions = new HBox(5);
-    //     Button newbutton0 = new Button(photoOption0.getText());
-    //     Button newbutton1 = new Button(photoOption1.getText());
-    //     Button newbutton2 = new Button(photoOption2.getText());
-    //     Button newbutton3 = new Button(photoOption3.getText());
-
-    //     newbutton0.setOnAction(photoOption0.getOnAction());
-    //     newbutton1.setOnAction(photoOption1.getOnAction());
-    //     newbutton2.setOnAction(photoOption2.getOnAction());
-    //     newbutton3.setOnAction(photoOption3.getOnAction());
-
-    //     newPhotoOptions.getChildren().addAll(newbutton0, newbutton1, newbutton2, newbutton3);
-    //     return newPhotoOptions;
-    // }
-
     private void removePhotoOptions()
     {
         for (Node node : leftBox.getChildren()) {
@@ -120,6 +105,55 @@ public class StockController {
         //create popup to list current tags to select from and add new tags
         VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
         Photo photo = photoMap.get(pictureContainer);
+        ChoiceDialog<String> choice = new ChoiceDialog<>("create new tag", Tag.tagTypes);
+        choice.getItems().add("create new tag");
+        choice.setTitle("Add a Tag");
+        choice.setHeaderText("Select a tag to add to the photo or create a new one");
+        Optional<String> result = choice.showAndWait();
+        if (result.isPresent()) {
+            if (result.get().equals("create new tag")) {
+                TextInputDialog newTagDialog = new TextInputDialog("new tag name");
+                newTagDialog.setTitle("Create a new tag");
+                Optional<String> newTagResult = newTagDialog.showAndWait();
+                if (newTagResult.isPresent()) {
+                    Tag.tagTypes.add(newTagResult.get());
+                }
+            } else {
+                TextInputDialog dialog = new TextInputDialog("new tag value");
+                dialog.setTitle("Set the value for the tag " + result.get());
+                Optional<String> tagValueResult = dialog.showAndWait();
+                if (tagValueResult.isPresent()) {
+                    Tag tag = new Tag(result.get(), tagValueResult.get());
+                    photo.addTag(tag);
+                }
+            }
+        }
+    }
+
+    public void removeTag(ActionEvent event) {
+        //create popup to list current tags to select from and remove
+        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
+        Photo photo = photoMap.get(pictureContainer);
+        if(photo.getTags().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No Tags");
+            alert.setHeaderText("No tags to remove");
+            alert.setContentText("This photo has no tags to remove.");
+            alert.showAndWait();
+            return;
+        }
+        ChoiceDialog<String> choice = new ChoiceDialog<>("remove tag", photo.getTagsAsString());
+        choice.setTitle("Remove a Tag");
+        choice.setHeaderText("Select a tag to remove from the photo");
+        Optional<String> result = choice.showAndWait();
+        if (result.isPresent()) {
+            for (Tag tag : photo.getTags()) {
+                if (tag.toString().equals(result.get())) {
+                    photo.removeTag(tag);
+                    break;
+                }
+            }
+        }
     }
 
     public void captionPhoto(ActionEvent event) {
@@ -155,8 +189,6 @@ public class StockController {
     }
 
     public void slideShow(ActionEvent event) {
-        leftBox.getChildren().remove(photoOptions);
-        leftBox.getChildren().addAll(photoOptions);
         // try {
         //     Parent root = FXMLLoader.load(getClass().getResource("slideshow.fxml"));
         //     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

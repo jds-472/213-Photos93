@@ -37,8 +37,8 @@
                               </VBox>
                               <HBox fx:id="photoOptions" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Button fx:id="photoOption0" mnemonicParsing="false" text="Add Tag" />
-                                    <Button fx:id="photoOption1" mnemonicParsing="false" text="Remove Tag" />
+                                    <Button fx:id="photoOption0" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
+                                    <Button fx:id="photoOption1" mnemonicParsing="false" onAction="#removeTag" text="Remove Tag" />
                                     <Button fx:id="photoOption2" mnemonicParsing="false" onAction="#displayPhoto" text="Display" />
                                     <Button fx:id="photoOption3" mnemonicParsing="false" onAction="#captionPhoto" text="Caption This" />
                                  </children>
