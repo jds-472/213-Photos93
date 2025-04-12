@@ -5,23 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
 import model.Photo;
 import model.Tag;
 import model.Album;
+import model.Data;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.scene.control.TextInputDialog;
 import java.util.Optional;
 import javafx.scene.control.*;
 
@@ -40,22 +38,18 @@ public class StockController {
     // private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
     private ArrayList<Photo> photos;
 
-    private Album album;
-
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
     public StockController() {
     }
 
-    public void setAlbum(Album album)
-    {
-        this.album = album;
+    public void initialize() {
         label.setText("Stock");
         leftBox.getChildren().clear();
         rightBox.getChildren().clear();
-        if (album == null) {return;}
-        photos = new ArrayList<>(album.getPhotos());
+        if (Data.getCurrentAlbum() == null) {return;}
+        photos = new ArrayList<>(Data.getCurrentAlbum().getPhotos());
         for (int i = 0; i < photos.size(); i++) {
             ImageView stock = new ImageView(photos.get(i).getPicture());
             stock.setFitHeight(200);
@@ -71,10 +65,6 @@ public class StockController {
                 rightBox.getChildren().add(pictureContainer);
             }
         }
-    }
-
-    public void initialize() {
-
     }
 
     private void removePhotoOptions()
@@ -104,13 +94,12 @@ public class StockController {
         removePhotoOptions();
         VBox pictureContainer = (VBox) event.getSource();
         pictureContainer.getChildren().add(photoOptions);
+        Data.setCurrentPhoto(photoMap.get(pictureContainer));
     }
 
     public void addTag(ActionEvent event)
     {
         //create popup to list current tags to select from and add new tags
-        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
-        Photo photo = photoMap.get(pictureContainer);
         ChoiceDialog<String> choice = new ChoiceDialog<>("create new tag", Tag.tagTypes);
         choice.getItems().add("create new tag");
         choice.setTitle("Add a Tag");
@@ -130,7 +119,7 @@ public class StockController {
                 Optional<String> tagValueResult = dialog.showAndWait();
                 if (tagValueResult.isPresent()) {
                     Tag tag = new Tag(result.get(), tagValueResult.get());
-                    photo.addTag(tag);
+                    Data.getCurrentPhoto().addTag(tag);
                 }
             }
         }
@@ -138,9 +127,7 @@ public class StockController {
 
     public void removeTag(ActionEvent event) {
         //create popup to list current tags to select from and remove
-        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
-        Photo photo = photoMap.get(pictureContainer);
-        if(photo.getTags().isEmpty()) {
+        if(Data.getCurrentPhoto().getTags().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No Tags");
             alert.setHeaderText("No tags to remove");
@@ -148,14 +135,14 @@ public class StockController {
             alert.showAndWait();
             return;
         }
-        ChoiceDialog<String> choice = new ChoiceDialog<>("remove tag", photo.getTagsAsString());
+        ChoiceDialog<String> choice = new ChoiceDialog<>("remove tag", Data.getCurrentPhoto().getTagsAsString());
         choice.setTitle("Remove a Tag");
         choice.setHeaderText("Select a tag to remove from the photo");
         Optional<String> result = choice.showAndWait();
         if (result.isPresent()) {
-            for (Tag tag : photo.getTags()) {
+            for (Tag tag : Data.getCurrentPhoto().getTags()) {
                 if (tag.toString().equals(result.get())) {
-                    photo.removeTag(tag);
+                    Data.getCurrentPhoto().removeTag(tag);
                     break;
                 }
             }
@@ -165,7 +152,6 @@ public class StockController {
     public void captionPhoto(ActionEvent event) {
         VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
         Label captionLabel = (Label) pictureContainer.getChildren().get(1);
-        Photo photo = photoMap.get(pictureContainer);
         TextInputDialog dialog = new TextInputDialog(captionLabel.getText());
         dialog.setTitle("Caption Photo");
         Optional<String> result = dialog.showAndWait();
@@ -173,19 +159,14 @@ public class StockController {
             dialog.setContentText("Caption is invalid, try again");
             result = dialog.showAndWait();
         }
-        photo.setCaption(result.get());
-        captionLabel.setText(photo.getCaption());
+        Data.getCurrentPhoto().setCaption(result.get());
+        captionLabel.setText(result.get());
         
     }
 
     public void displayPhoto(ActionEvent event) {
-        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
-        Photo photo = photoMap.get(pictureContainer);
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("display.fxml"));
-            Parent root = loader.load();
-            DisplayController displayController = loader.getController();
-            displayController.setPhoto(photo, album);
+            Parent root = FXMLLoader.load(getClass().getResource("display.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

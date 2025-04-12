@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import model.User;
 import model.Album;
+import model.Data;
+
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,19 +27,13 @@ public class UserController {
     private Set<Album> userAlbums;
     private Map<String, Album> albumMap = new HashMap<>(); // Map to store album names and their corresponding Album objects
 
-    
-
-    public void setUser(User user) {
-        userAlbums = user.getAlbums();
+    public void initialize() {
+        userAlbums = Data.getCurrentUser().getAlbums();
         for (Album album : userAlbums) {
             albums.add(album.getName());
             albumMap.put(album.getName(), album); // Store the album in the map
         }
         albumList.setItems(albums);
-        // Set user name in the UI if needed
-    }
-
-    public void initialize() {
         // Load user albums from model later
         // albums = FXCollections.observableArrayList();
     }
@@ -90,10 +86,9 @@ public class UserController {
 
     public void openAlbum(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
-            Parent root = loader.load();
-            StockController stockController = loader.getController();
-            stockController.setAlbum(albumMap.get(albumList.getSelectionModel().getSelectedItem()));
+            String selected = albumList.getSelectionModel().getSelectedItem();
+            Data.setCurrentAlbum(albumMap.get(selected)); // Get the Album object from the map
+            Parent root = FXMLLoader.load(getClass().getResource("stock.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -104,6 +99,7 @@ public class UserController {
 
     public void logout(ActionEvent event) {
         try {
+            Data.setCurrentUser(null);
             Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

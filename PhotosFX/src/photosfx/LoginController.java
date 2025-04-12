@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import model.Data;
 import model.User;
 
 
@@ -24,22 +26,20 @@ public class LoginController {
     }
 
     public void enter(ActionEvent event) {
-        String user = userField.getText().trim();
+        String username = userField.getText().trim();
         Parent root = null;
-        if (!user.isEmpty()) {
-            if (user.equals("stock")) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("user.fxml"));
-                    root = loader.load();
-                    UserController userController = loader.getController();
-                    userController.setUser(User.getUser(user));
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (user.equals("admin")) {
+        if (!username.isEmpty()) {
+            // if (user.equals("stock")) {
+            //     try {
+            //         Data.setCurrentUser(User.getUser(user));
+            //         root = FXMLLoader.load(getClass().getResource("stock.fxml"));
+            //         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //         stage.setScene(new Scene(root));
+            //         stage.show();
+            //     } catch (Exception e) {
+            //         e.printStackTrace();
+            //     }} 
+            if (username.equals("admin")) {
                 try {
                     root = FXMLLoader.load(getClass().getResource("admin.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -48,7 +48,9 @@ public class LoginController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
+            } 
+            else if (User.users.contains(User.getUser(username))) {
+                Data.setCurrentUser(User.getUser(username));
                 try {
                     root = FXMLLoader.load(getClass().getResource("user.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -58,6 +60,18 @@ public class LoginController {
                     e.printStackTrace();
                 }
             }
-        }  
+            else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("User Error");
+                alert.setHeaderText("User does not exist, please create a new user");
+                alert.showAndWait();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("User Error");
+            alert.setHeaderText("Username cannot be empty");
+            alert.showAndWait();
+        }
     }
 }

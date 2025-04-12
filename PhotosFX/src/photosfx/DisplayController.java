@@ -12,27 +12,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import model.Album;
+import model.Data;
 
 public class DisplayController {
 
     @FXML ImageView imageDisplay;
     @FXML Label displayCaption;
-
-    private Album fromAlbum;
     
-    public void setPhoto(Photo photo, Album from) {
-        this.fromAlbum = from;
-        Image image = photo.getPicture();
+    public void initialize() {
+        Image image = Data.getCurrentPhoto().getPicture();
         imageDisplay.setImage(image);
-        displayCaption.setText(photo.getCaption());
+        displayCaption.setText(Data.getCurrentPhoto().getCaption());
     }
 
     public void exitDisplay(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
-            Parent root = loader.load();
-            StockController stockController = loader.getController();
-            stockController.setAlbum(fromAlbum);
+            Data.setCurrentPhoto(null);
+            Parent root = FXMLLoader.load(getClass().getResource("stock.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
