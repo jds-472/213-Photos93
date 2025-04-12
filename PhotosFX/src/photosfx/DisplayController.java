@@ -20,6 +20,7 @@ public class DisplayController {
     @FXML Label displayCaption;
     
     public void initialize() {
+        //TODO: change the fxml to support tags and display tags as well as date once serializable is done (can do placeholder date if you feel like it)
         Image image = Data.getCurrentPhoto().getPicture();
         imageDisplay.setImage(image);
         displayCaption.setText(Data.getCurrentPhoto().getCaption());

@@ -27,6 +27,8 @@ public class UserController {
     private Set<Album> userAlbums;
     private Map<String, Album> albumMap = new HashMap<>(); // Map to store album names and their corresponding Album objects
 
+    //TODO: this class
+
     public void initialize() {
         userAlbums = Data.getCurrentUser().getAlbums();
         for (Album album : userAlbums) {
