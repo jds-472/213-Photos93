@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.DisplayController">
    <children>
       <fx:include fx:id="exitOptions" source="exit_options.fxml" />
@@ -22,6 +21,6 @@
             <VBox fx:id="displayContainer" alignment="TOP_CENTER" />
          </content>
       </ScrollPane>
-      <Label fx:id="currentTags" text="current tags" />
+      <Label fx:id="dateLabel" text="Date:" />
    </children>
 </VBox>

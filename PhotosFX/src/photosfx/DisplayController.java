@@ -19,7 +19,7 @@ public class DisplayController {
 
     @FXML ImageView imageDisplay;
     @FXML Label displayCaption;
-    @FXML Label currentTags;
+    @FXML Label datLabel;
     @FXML VBox displayContainer;
     @FXML ScrollPane scrollContainer;
     
