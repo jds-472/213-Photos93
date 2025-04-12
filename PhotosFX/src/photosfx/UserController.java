@@ -120,9 +120,6 @@ public class UserController {
         try {
             Data.setCurrentFXML(Data.ALBUMFXML);
             String selected = albumList.getSelectionModel().getSelectedItem();
-            System.out.println("selected: " + selected);
-            System.out.println("albumMap: " + albumMap);
-            System.out.println("albumMap.get(selected): " + albumMap.get(selected));
             Data.setCurrentAlbum(albumMap.get(selected)); // Get the Album object from the map
             Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

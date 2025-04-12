@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.DisplayController">
-   <center>
-      <ImageView fx:id="imageDisplay" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-   </center>
-   <top>
-      <fx:include fx:id="exitOptions" source="exit_options.fxml" BorderPane.alignment="CENTER" />
-   </top>
-   <bottom>
-      <Label fx:id="displayCaption" text="Caption" BorderPane.alignment="CENTER" />
-   </bottom>
-</BorderPane>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.DisplayController">
+   <children>
+      <fx:include fx:id="exitOptions" source="exit_options.fxml" />
+      <ImageView fx:id="imageDisplay" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="displayCaption" text="Caption" />
+      <Label text="TAGS:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="scrollContainer" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+         <content>
+            <VBox fx:id="displayContainer" alignment="TOP_CENTER" />
+         </content>
+      </ScrollPane>
+      <Label fx:id="currentTags" text="current tags" />
+   </children>
+</VBox>
