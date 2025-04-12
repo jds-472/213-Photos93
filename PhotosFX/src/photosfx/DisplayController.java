@@ -28,7 +28,7 @@ public class DisplayController {
     public void exitDisplay(ActionEvent event) {
         try {
             Data.setCurrentPhoto(null);
-            Parent root = FXMLLoader.load(getClass().getResource("stock.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

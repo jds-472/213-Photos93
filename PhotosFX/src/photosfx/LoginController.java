@@ -29,16 +29,6 @@ public class LoginController {
         String username = userField.getText().trim();
         Parent root = null;
         if (!username.isEmpty()) {
-            // if (user.equals("stock")) {
-            //     try {
-            //         Data.setCurrentUser(User.getUser(user));
-            //         root = FXMLLoader.load(getClass().getResource("stock.fxml"));
-            //         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            //         stage.setScene(new Scene(root));
-            //         stage.show();
-            //     } catch (Exception e) {
-            //         e.printStackTrace();
-            //     }} 
             if (username.equals("admin")) {
                 try {
                     root = FXMLLoader.load(getClass().getResource("admin.fxml"));

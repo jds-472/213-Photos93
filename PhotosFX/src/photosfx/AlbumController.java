@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 import javafx.scene.control.*;
 
-public class StockController {
+public class AlbumController {
 
     @FXML private Label label;
     @FXML private ImageView stock;
@@ -41,7 +41,7 @@ public class StockController {
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
-    public StockController() {
+    public AlbumController() {
     }
 
     public void initialize() {
