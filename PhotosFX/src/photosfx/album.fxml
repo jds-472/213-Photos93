@@ -15,7 +15,7 @@
     <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-              <Label fx:id="label" alignment="CENTER" prefHeight="29.0" prefWidth="39.0" text="User" BorderPane.alignment="CENTER" />
+              <Label fx:id="albumLabel" alignment="CENTER" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Album" BorderPane.alignment="CENTER" />
          </top>
          <center>
             <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">

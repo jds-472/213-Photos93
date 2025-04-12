@@ -12,7 +12,6 @@ import model.Data;
 public class ExitOptionsController {
 
     public void goBack (ActionEvent event) {
-        System.out.println(Data.getCurrentFXML());
         switch (Data.getCurrentFXML()) {
             case Data.USERFXML, Data.ADMINFXML:
                 transitionFXML(event, "login.fxml", Data.LOGINFXML);

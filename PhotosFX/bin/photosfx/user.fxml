@@ -11,7 +11,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.UserController">
     <top>
-        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Welcome to Photo Album" BorderPane.alignment="CENTER" />
+        <Label fx:id="userWelcome" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Welcome to Photo Album" BorderPane.alignment="CENTER" />
     </top>
 
     <center>

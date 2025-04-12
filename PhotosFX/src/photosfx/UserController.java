@@ -21,6 +21,7 @@ public class UserController {
 
     @FXML private ListView<String> albumList;
     @FXML private TextField albumNameField;
+    @FXML private Label userWelcome;
 
     private ObservableList<String> albums = FXCollections.observableArrayList();
     private Set<Album> userAlbums;
@@ -28,10 +29,10 @@ public class UserController {
 
     public void initialize() {
         userAlbums = Data.getCurrentUser().getAlbums();
+        userWelcome.setText("Welcome " + Data.getCurrentUser().getName() + " to your Albums!");
         for (Album album : userAlbums) {
             albums.add(album.getName());
             albumMap.put(album.getName(), album); // Store the album in the map
-            System.out.println(album.getName());
         }
         albumList.setItems(albums);
         // Load user albums from model later
@@ -102,17 +103,26 @@ public class UserController {
             } else if (albums.contains(newName)) {
                 showAlert("Album name already exists.");
             } else {
-                selectedAlbum.setName(newName); // Update the album name in the Album object
+                albumMap.remove(selected); // Remove the old name from the map
                 albums.set(albums.indexOf(selected), newName);
                 Data.getCurrentUser().getAlbum(selected).setName(newName); // Update the album name in the user's albums
+                selectedAlbum.setName(newName); // Update the album name in the Album object
+                albumMap.put(newName, selectedAlbum); // Add the new name to the map
             }
         });
     }
 
     public void openAlbum(ActionEvent event) {
+        if (albumList.getSelectionModel().getSelectedItem() == null) {
+            showAlert("No album selected.");
+            return;
+        }
         try {
             Data.setCurrentFXML(Data.ALBUMFXML);
             String selected = albumList.getSelectionModel().getSelectedItem();
+            System.out.println("selected: " + selected);
+            System.out.println("albumMap: " + albumMap);
+            System.out.println("albumMap.get(selected): " + albumMap.get(selected));
             Data.setCurrentAlbum(albumMap.get(selected)); // Get the Album object from the map
             Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

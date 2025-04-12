@@ -22,7 +22,7 @@ import javafx.scene.control.*;
 
 public class AlbumController {
 
-    @FXML private Label label;
+    @FXML private Label albumLabel;
     @FXML private ImageView stock;
     @FXML private Button photoOption0;
     @FXML private Button photoOption1;
@@ -39,7 +39,7 @@ public class AlbumController {
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
 
     public void initialize() {
-        label.setText("Stock");
+        albumLabel.setText("You are in the album " + Data.getCurrentAlbum().getName() + "!");
         leftBox.getChildren().clear();
         rightBox.getChildren().clear();
         if (Data.getCurrentAlbum() == null) {return;}

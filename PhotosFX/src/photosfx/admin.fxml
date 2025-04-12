@@ -13,7 +13,7 @@
     <ListView fx:id="userList" prefHeight="200" prefWidth="250" />
 
     <HBox spacing="10">
-        <TextField fx:id="usernameField" promptText="Enter new username" />
+        <TextField fx:id="usernameField" onKeyPressed="#newUsernameFieldKeyPressed" promptText="Enter new username" />
         <Button onAction="#createUser" text="Create User" />
    
        <Button onAction="#deleteUser" text="Delete Selected User" />
