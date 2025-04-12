@@ -166,6 +166,7 @@ public class AlbumController {
 
     public void displayPhoto(ActionEvent event) {
         try {
+            Data.setCurrentFXML(Data.DISPLAYFXML);
             Parent root = FXMLLoader.load(getClass().getResource("display.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -186,20 +187,5 @@ public class AlbumController {
         // }
     }
 
-    public void logOut(ActionEvent event) {
-        // save stuff to disk
-        try {
-                Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-    }
 
-    public void quit(ActionEvent event) {
-        // save stuff to disk
-        System.exit(0);
-    }
 }

@@ -6,6 +6,15 @@ public class Data {
     private static User currentUser = null;
     private static Album currentAlbum = null;
     private static Photo currentPhoto = null;
+    private static int currentFXML = 0;
+
+    public static final int LOGINFXML = 0;
+    public static final int ADMINFXML = 1;
+    public static final int USERFXML = 2;
+    public static final int ALBUMFXML = 3;
+    public static final int DISPLAYFXML = 4;
+    public static final int SLIDESHOWFXML = 5;
+
 
     public static User getCurrentUser() {
         return currentUser;
@@ -29,5 +38,13 @@ public class Data {
 
     public static void setCurrentPhoto(Photo currentPhoto) {
         Data.currentPhoto = currentPhoto;
+    }
+
+    public static int getCurrentFXML() {
+        return currentFXML;
+    }
+
+    public static void setCurrentFXML(int currentFXML) {
+        Data.currentFXML = currentFXML;
     }
 }

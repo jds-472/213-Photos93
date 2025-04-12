@@ -19,6 +19,10 @@ public class LoginController {
     @FXML
     private TextField userField;
 
+    public void initialize() {
+        Data.setCurrentFXML(Data.LOGINFXML);
+    }
+
     public void userFieldKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode().toString().equals("ENTER")) {
             enter(new ActionEvent(userField, null));
@@ -30,6 +34,7 @@ public class LoginController {
         Parent root = null;
         if (!username.isEmpty()) {
             if (username.equals("admin")) {
+                Data.setCurrentFXML(Data.ADMINFXML);
                 try {
                     root = FXMLLoader.load(getClass().getResource("admin.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -41,6 +46,7 @@ public class LoginController {
             } 
             else if (User.users.contains(User.getUser(username))) {
                 Data.setCurrentUser(User.getUser(username));
+                Data.setCurrentFXML(Data.USERFXML);
                 try {
                     root = FXMLLoader.load(getClass().getResource("user.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

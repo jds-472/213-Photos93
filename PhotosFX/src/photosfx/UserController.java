@@ -88,6 +88,7 @@ public class UserController {
 
     public void openAlbum(ActionEvent event) {
         try {
+            Data.setCurrentFXML(Data.ALBUMFXML);
             String selected = albumList.getSelectionModel().getSelectedItem();
             Data.setCurrentAlbum(albumMap.get(selected)); // Get the Album object from the map
             Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));
@@ -99,17 +100,17 @@ public class UserController {
         }
     }
 
-    public void logout(ActionEvent event) {
-        try {
-            Data.setCurrentUser(null);
-            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    // public void logout(ActionEvent event) {
+    //     try {
+    //         Data.setCurrentUser(null);
+    //         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+    //         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    //         stage.setScene(new Scene(root));
+    //         stage.show();
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
