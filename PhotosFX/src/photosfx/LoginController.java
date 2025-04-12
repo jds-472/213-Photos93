@@ -23,7 +23,7 @@ public class LoginController {
         Data.setCurrentFXML(Data.LOGINFXML);
     }
 
-    public void userFieldKeyReleased(KeyEvent keyEvent) {
+    public void userFieldKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode().toString().equals("ENTER")) {
             enter(new ActionEvent(userField, null));
         }

@@ -39,7 +39,7 @@ public class UserController {
         // albums = FXCollections.observableArrayList();
     }
 
-    public void albumNameFieldKeyReleased(javafx.scene.input.KeyEvent keyEvent) {
+    public void albumNameFieldKeyPressed(javafx.scene.input.KeyEvent keyEvent) {
         if (keyEvent.getCode().toString().equals("ENTER")) {
             createAlbum(new ActionEvent(albumNameField, null));
         }
@@ -56,6 +56,8 @@ public class UserController {
             return;
         }
         albums.add(name);
+        Data.getCurrentUser().addAlbum(new Album(name)); // Add the new album to the user's albums
+        albumMap.put(name, new Album(name)); // Add the new album to the map
         albumNameField.clear();
     }
 
