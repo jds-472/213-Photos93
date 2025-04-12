@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -94,13 +93,7 @@
             </VBox>
          </right>
          <bottom>
-            <HBox prefHeight="20.0" prefWidth="800.0" spacing="5.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Region prefHeight="25.0" prefWidth="350.0" />
-                  <Button mnemonicParsing="false" onAction="#logOut" text="Log Out" />
-                  <Button mnemonicParsing="false" onAction="#quit" text="Quit" />
-               </children>
-            </HBox>
+            <fx:include fx:id="exitOptions" source="exit_options.fxml" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
     </children>

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="photosfx.AdminController">
-    <Label text="Admin Portal" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.AdminController">
+    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Admin Portal" />
     
     <ListView fx:id="userList" prefHeight="200" prefWidth="250" />
 
     <HBox spacing="10">
         <TextField fx:id="usernameField" promptText="Enter new username" />
-        <Button text="Create User" onAction="#createUser" />
+        <Button onAction="#createUser" text="Create User" />
+   
+       <Button onAction="#deleteUser" text="Delete Selected User" />
     </HBox>
-
-    <Button text="Delete Selected User" onAction="#deleteUser" />
-    <Button text="Logout" onAction="#logout" />
+    <fx:include fx:id="exitOptions" source="exit_options.fxml" />
 </VBox>
