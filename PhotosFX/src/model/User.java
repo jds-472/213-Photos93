@@ -21,6 +21,15 @@ public class User {
         return albums;
     }
 
+    public Album getAlbum(String name) {
+        for (Album album : albums) {
+            if (album.getName().equals(name)) {
+                return album;
+            }
+        }
+        return null;
+    }
+
     public static User getUser(String name) {
         for (User user : users) {
             if (user.getName().equals(name)) {

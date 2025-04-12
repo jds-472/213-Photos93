@@ -12,10 +12,10 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import model.Album;
 import model.Data;
-
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class UserController {
 
@@ -26,13 +26,12 @@ public class UserController {
     private Set<Album> userAlbums;
     private Map<String, Album> albumMap = new HashMap<>(); // Map to store album names and their corresponding Album objects
 
-    //TODO: this class
-
     public void initialize() {
         userAlbums = Data.getCurrentUser().getAlbums();
         for (Album album : userAlbums) {
             albums.add(album.getName());
             albumMap.put(album.getName(), album); // Store the album in the map
+            System.out.println(album.getName());
         }
         albumList.setItems(albums);
         // Load user albums from model later
@@ -67,7 +66,16 @@ public class UserController {
             showAlert("No album selected.");
             return;
         }
-        albums.remove(selected);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("No", "No", "Yes");
+        dialog.setTitle("Delete Album");
+        dialog.setHeaderText("Are you sure you want to delete " + selected + " with all its photos?");
+        dialog.setContentText("Choose your option:");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent() && result.get().equals("Yes")) {
+            albums.remove(selected);
+            Data.getCurrentUser().removeAlbum(albumMap.get(selected)); // Remove the album from the user's albums
+            albumMap.remove(selected); // Remove the album from the map
+        }
     }
 
     public void renameAlbum(ActionEvent event) {
@@ -76,6 +84,12 @@ public class UserController {
             showAlert("No album selected.");
             return;
         }
+        Album selectedAlbum = albumMap.get(selected); // Get the Album object from the map
+        if (selectedAlbum == null) {
+            showAlert("Album not found.");
+            return;
+        }
+
 
         TextInputDialog dialog = new TextInputDialog(selected);
         dialog.setTitle("Rename Album");
@@ -88,7 +102,9 @@ public class UserController {
             } else if (albums.contains(newName)) {
                 showAlert("Album name already exists.");
             } else {
+                selectedAlbum.setName(newName); // Update the album name in the Album object
                 albums.set(albums.indexOf(selected), newName);
+                Data.getCurrentUser().getAlbum(selected).setName(newName); // Update the album name in the user's albums
             }
         });
     }
@@ -106,18 +122,6 @@ public class UserController {
             e.printStackTrace();
         }
     }
-
-    // public void logout(ActionEvent event) {
-    //     try {
-    //         Data.setCurrentUser(null);
-    //         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-    //         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    //         stage.setScene(new Scene(root));
-    //         stage.show();
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

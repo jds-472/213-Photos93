@@ -16,6 +16,7 @@ public class ExitOptionsController {
         switch (Data.getCurrentFXML()) {
             case Data.USERFXML, Data.ADMINFXML:
                 transitionFXML(event, "login.fxml", Data.LOGINFXML);
+                Data.setCurrentUser(null);
                 break;
             case Data.LOGINFXML:
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -25,9 +26,11 @@ public class ExitOptionsController {
                 break;
             case Data.ALBUMFXML:
                 transitionFXML(event, "user.fxml", Data.USERFXML);
+                Data.setCurrentAlbum(null);
                 break;
             case Data.DISPLAYFXML, Data.SLIDESHOWFXML:
                 transitionFXML(event, "album.fxml", Data.ALBUMFXML);
+                Data.setCurrentPhoto(null);
                 break;
             default:
                 break;
@@ -38,6 +41,8 @@ public class ExitOptionsController {
         // save stuff to disk
         Data.setCurrentFXML(Data.LOGINFXML);
         Data.setCurrentUser(null);
+        Data.setCurrentAlbum(null);
+        Data.setCurrentPhoto(null);
         transitionFXML(event, "login.fxml", Data.LOGINFXML);
     }
 
