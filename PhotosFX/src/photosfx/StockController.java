@@ -51,10 +51,11 @@ public class StockController {
     public void setAlbum(Album album)
     {
         this.album = album;
-        photos = new ArrayList<>(album.getPhotos());
         label.setText("Stock");
         leftBox.getChildren().clear();
         rightBox.getChildren().clear();
+        if (album == null) {return;}
+        photos = new ArrayList<>(album.getPhotos());
         for (int i = 0; i < photos.size(); i++) {
             ImageView stock = new ImageView(photos.get(i).getPicture());
             stock.setFitHeight(200);
