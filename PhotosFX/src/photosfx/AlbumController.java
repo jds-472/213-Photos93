@@ -13,10 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Photo;
 import model.Tag;
-import model.Album;
 import model.Data;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,14 +32,11 @@ public class AlbumController {
     @FXML private VBox pictureBox;
     @FXML private VBox leftBox;
     @FXML private VBox rightBox;
-    // private ArrayList<ImageView> stocks = new ArrayList<>(java.util.Arrays.asList(stock));
     private ArrayList<Photo> photos;
 
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
-    public AlbumController() {
-    }
 
     public void initialize() {
         label.setText("Stock");

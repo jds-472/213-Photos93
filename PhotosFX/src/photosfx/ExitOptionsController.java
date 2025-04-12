@@ -12,9 +12,10 @@ import model.Data;
 public class ExitOptionsController {
 
     public void goBack (ActionEvent event) {
+        System.out.println(Data.getCurrentFXML());
         switch (Data.getCurrentFXML()) {
             case Data.USERFXML, Data.ADMINFXML:
-                transitionFXML(event, "login.fxml");
+                transitionFXML(event, "login.fxml", Data.LOGINFXML);
                 break;
             case Data.LOGINFXML:
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -23,10 +24,10 @@ public class ExitOptionsController {
                 alert.showAndWait();
                 break;
             case Data.ALBUMFXML:
-                transitionFXML(event, "user.fxml");
+                transitionFXML(event, "user.fxml", Data.USERFXML);
                 break;
             case Data.DISPLAYFXML, Data.SLIDESHOWFXML:
-                transitionFXML(event, "album.fxml");
+                transitionFXML(event, "album.fxml", Data.ALBUMFXML);
                 break;
             default:
                 break;
@@ -37,7 +38,7 @@ public class ExitOptionsController {
         // save stuff to disk
         Data.setCurrentFXML(Data.LOGINFXML);
         Data.setCurrentUser(null);
-        transitionFXML(event, "login.fxml");
+        transitionFXML(event, "login.fxml", Data.LOGINFXML);
     }
 
     public void quit(ActionEvent event) {
@@ -45,9 +46,10 @@ public class ExitOptionsController {
         System.exit(0);
     }
 
-    private void transitionFXML(ActionEvent event, String fxml)
+    private void transitionFXML(ActionEvent event, String fxml, int FXML)
     {
         try {
+            Data.setCurrentFXML(FXML);
             Parent root = FXMLLoader.load(getClass().getResource(fxml));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

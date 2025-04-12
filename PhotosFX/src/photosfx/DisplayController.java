@@ -7,11 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.Photo;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
-import model.Album;
 import model.Data;
 
 public class DisplayController {

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import model.User;
 import model.Album;
 import model.Data;
 
@@ -38,6 +37,12 @@ public class UserController {
         albumList.setItems(albums);
         // Load user albums from model later
         // albums = FXCollections.observableArrayList();
+    }
+
+    public void albumNameFieldKeyReleased(javafx.scene.input.KeyEvent keyEvent) {
+        if (keyEvent.getCode().toString().equals("ENTER")) {
+            createAlbum(new ActionEvent(albumNameField, null));
+        }
     }
 
     public void createAlbum(ActionEvent event) {

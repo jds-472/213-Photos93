@@ -24,7 +24,7 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <HBox alignment="CENTER" spacing="10">
-                <TextField fx:id="albumNameField" promptText="Album name" />
+                <TextField fx:id="albumNameField" onKeyReleased="#albumNameFieldKeyPressed" promptText="Album name" />
                 <Button onAction="#createAlbum" text="Create" />
                 <Button onAction="#deleteAlbum" text="Delete" />
                 <Button onAction="#renameAlbum" text="Rename" />
