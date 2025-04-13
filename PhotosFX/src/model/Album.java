@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 public class Album implements Serializable{
     private String name;
@@ -31,5 +32,31 @@ public class Album implements Serializable{
 
     public String toString() {
         return name;
+    }
+
+    public int getPhotoCount(){
+        return photos.size();
+    }
+
+    public LocalDateTime getEarliestDate()
+    {
+        LocalDateTime earliest = null;
+        for (Photo photo : photos) {
+            if (earliest == null || photo.getDate().isBefore(earliest)) {
+                earliest = photo.getDate();
+            }
+        }
+        return earliest;
+    }
+
+    public LocalDateTime getLatestDate()
+    {
+        LocalDateTime latest = null;
+        for (Photo photo : photos) {
+            if (latest == null || photo.getDate().isAfter(latest)) {
+                latest = photo.getDate();
+            }
+        }
+        return latest;
     }
 }

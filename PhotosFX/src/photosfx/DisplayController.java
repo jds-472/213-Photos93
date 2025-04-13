@@ -14,6 +14,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.fxml.FXML;
 import model.Data;
 import model.Tag;
+import model.Photo;
+import java.time.format.DateTimeFormatter;
 
 public class DisplayController {
 
