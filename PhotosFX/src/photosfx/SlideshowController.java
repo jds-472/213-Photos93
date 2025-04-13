@@ -68,7 +68,7 @@ public class SlideshowController {
         try {
             Data.setCurrentPhoto(null);
             Data.setCurrentFXML(Data.ALBUMFXML);
-            Parent root = FXMLLoader.load(getClass().getResource("/view/album.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
