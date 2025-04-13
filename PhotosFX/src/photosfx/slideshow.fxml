@@ -9,7 +9,10 @@
 <?import javafx.geometry.Insets?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.SlideshowController"
-      alignment="CENTER" spacing="15" padding="20">
+      alignment="CENTER" spacing="15">
+        <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
     
     <ImageView fx:id="slideImage" fitHeight="400" fitWidth="600" preserveRatio="true"/>
     
@@ -17,7 +20,10 @@
     <Label fx:id="slideDate" style="-fx-font-size: 14px;"/>
     
     <ScrollPane fitToWidth="true" prefHeight="100">
-        <VBox fx:id="tagBox" spacing="5" padding="10"/>
+        <VBox fx:id="tagBox" spacing="5"/>
+        <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
     </ScrollPane>
 
     <HBox alignment="CENTER" spacing="20">
@@ -25,5 +31,4 @@
         <Button text="Exit" onAction="#exitSlideshow"/>
         <Button text="Next" onAction="#nextSlide"/>
     </HBox>
-
 </VBox>
