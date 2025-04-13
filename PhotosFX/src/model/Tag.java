@@ -32,4 +32,17 @@ public class Tag implements Serializable{
     {
         return name + ": " + value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Tag other = (Tag) obj;
+        return name.equalsIgnoreCase(other.name) && value.equalsIgnoreCase(other.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return (name.toLowerCase() + ":" + value.toLowerCase()).hashCode();
+    }
 }
