@@ -130,6 +130,18 @@ public class UserController {
         }
     }
 
+    private String displayAlbumData(Album album) {
+        int count = album.getPhotoCount();
+        LocalDateTime start = album.getEarliestDate();
+        LocalDateTime end = album.getLatestDate();
+
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        String dateRange = (start == null || end == null)
+            ? "No date info"
+            : fmt.format(start) + " – " + fmt.format(end);
+        return String.format("%s (%d photo%s, %s)", album.getName(), count, count == 1 ? "" : "s", dateRange);
+    }
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Notice");
