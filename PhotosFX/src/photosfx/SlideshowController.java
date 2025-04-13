@@ -42,8 +42,13 @@ public class SlideshowController {
         slideCaption.setText(photo.getCaption());
 
         // Format date
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
-        slideDate.setText(photo.getDate().format(fmt));
+        LocalDateTime date = photo.getDate();
+        if (date != null) {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
+            slideDate.setText(date.format(fmt));
+        } else {
+            slideDate.setText("Date unknown");
+        }
 
         // Load tags
         tagBox.getChildren().clear();
