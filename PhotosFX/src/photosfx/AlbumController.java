@@ -89,15 +89,13 @@ public class AlbumController {
 
 
     public void slideShow(ActionEvent event) {
-        // try {
-        //     Parent root = FXMLLoader.load(getClass().getResource("slideshow.fxml"));
-        //     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //     stage.setScene(new Scene(root));
-        //     stage.show();
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("slideshow.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
