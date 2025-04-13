@@ -22,10 +22,10 @@
     
     <HBox spacing="10" alignment="CENTER">
         <Label text="Tag 1:" />
-        <TextField fx:id="tagType1" promptText="e.g. person" />
+        <ChoiceBox fx:id="tagType1" />
         <TextField fx:id="tagValue1" promptText="e.g. amy" />
         <Label text="Tag 2:" />
-        <TextField fx:id="tagType2" promptText="optional" />
+        <ChoiceBox fx:id="tagType2" />
         <TextField fx:id="tagValue2" promptText="optional" />
         <ChoiceBox fx:id="tagLogic" />
         <Button text="Search by Tag(s)" onAction="#searchByTags"/>
