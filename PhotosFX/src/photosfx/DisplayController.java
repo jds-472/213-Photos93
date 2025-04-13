@@ -24,12 +24,19 @@ public class DisplayController {
     @FXML ScrollPane scrollContainer;
     
     public void initialize() {
-        //TODO: change the fxml to support date once serializable is done (can do placeholder date if you feel like it)
-        Image image = Data.getCurrentPhoto().getPicture();
+        Photo photo = Data.getCurrentPhoto();
+        Image image = photo.getPicture();
         imageDisplay.setImage(image);
-        displayCaption.setText(Data.getCurrentPhoto().getCaption());
-        for (Tag tag : Data.getCurrentPhoto().getTags()) {
-            displayContainer.getChildren().add(new Label(tag + ""));
+        displayCaption.setText(photo.getCaption());
+
+        // Set date label
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
+        dateLabel.setText("Date: " + photo.getDate().format(fmt));
+
+        // Load tags
+        displayContainer.getChildren().clear();
+        for (Tag tag : photo.getTags()) {
+            displayContainer.getChildren().add(new Label(tag.toString()));
         }
     }
 
