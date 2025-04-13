@@ -7,6 +7,7 @@ public class User {
     private String name;
     // private String password;
     private Set<Album> albums = new HashSet<>();
+    private static Set<User> users = new HashSet<>();
 
     public User(String name) {
         this.name = name;
@@ -29,6 +30,23 @@ public class User {
         return null;
     }
 
+    public static User getUser(String name) {
+        for (User user : users) {
+            if (user.getName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public static void addUser(User user) {
+        users.add(user);
+    }
+
+    public static void removeUser(User user) {
+        users.remove(user);
+    }
+
     public void addAlbum(Album album) {
         albums.add(album);
     }
@@ -39,5 +57,9 @@ public class User {
 
     public String toString() {
         return name;
+    }
+
+    public static Set<User> getUsers() {
+        return users;
     }
 }

@@ -23,14 +23,14 @@ public class Photos extends Application {
 
     public static void main(String[] args) {
         User stock = new User("stock");
-        Data.addUser(stock);
+        User.addUser(stock);
 
         Set<Photo> photos = new HashSet<>();
-        photos.add(new Photo("getDate", "pacman", new File("../data/pacmanstock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "blinky", new File("../data/blinkystock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "pinky", new File("../data/pinkystock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "inky", new File("../data/inkystock.png").toURI().toString()));
-        photos.add(new Photo("getDate", "clyde", new File("../data/clydestock.png").toURI().toString()));
+        photos.add(new Photo("pacman", new File("../data/pacmanstock.png").toURI().toString()));
+        photos.add(new Photo("blinky", new File("../data/blinkystock.png").toURI().toString()));
+        photos.add(new Photo("pinky", new File("../data/pinkystock.png").toURI().toString()));
+        photos.add(new Photo("inky", new File("../data/inkystock.png").toURI().toString()));
+        photos.add(new Photo("clyde", new File("../data/clydestock.png").toURI().toString()));
 
         stock.addAlbum(new Album("stock", photos));
     

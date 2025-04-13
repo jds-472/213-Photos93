@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import model.Data;
+import model.User;
 
 public class LoginController {
 
@@ -42,8 +43,8 @@ public class LoginController {
                     e.printStackTrace();
                 }
             } 
-            else if (Data.getUsers().contains(Data.getUser(username))) {
-                Data.setCurrentUser(Data.getUser(username));
+            else if (User.getUsers().contains(User.getUser(username))) {
+                Data.setCurrentUser(User.getUser(username));
                 Data.setCurrentFXML(Data.USERFXML);
                 try {
                     root = FXMLLoader.load(getClass().getResource("user.fxml"));
