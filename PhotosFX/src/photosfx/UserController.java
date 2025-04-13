@@ -31,8 +31,9 @@ public class UserController {
         userAlbums = Data.getCurrentUser().getAlbums();
         userWelcome.setText("Welcome " + Data.getCurrentUser().getName() + " to your Albums!");
         for (Album album : userAlbums) {
-            albums.add(album.getName());
-            albumMap.put(album.getName(), album); // Store the album in the map
+            String displayText = displayAlbumData(album);
+            albums.add(displayText);
+            albumMap.put(displayText, album);  // Map full display string to album
         }
         albumList.setItems(albums);
         // Load user albums from model later
