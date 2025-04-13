@@ -21,6 +21,6 @@
             <VBox fx:id="displayContainer" alignment="TOP_CENTER" />
          </content>
       </ScrollPane>
-      <Label fx:id="dateLabel" text="Date:" />
+      <Label fx:id="dateLabel" text="Date:" style="-fx-font-size: 14px;" />
    </children>
 </VBox>
