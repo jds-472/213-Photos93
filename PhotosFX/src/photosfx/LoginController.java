@@ -44,8 +44,8 @@ public class LoginController {
                     e.printStackTrace();
                 }
             } 
-            else if (User.users.contains(User.getUser(username))) {
-                Data.setCurrentUser(User.getUser(username));
+            else if (Data.getUsers().contains(Data.getUser(username))) {
+                Data.setCurrentUser(Data.getUser(username));
                 Data.setCurrentFXML(Data.USERFXML);
                 try {
                     root = FXMLLoader.load(getClass().getResource("user.fxml"));

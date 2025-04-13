@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import model.Data;
 import model.User;
 import java.util.Optional;
 
@@ -16,7 +17,7 @@ public class AdminController {
     private ObservableList<String> users = FXCollections.observableArrayList();
 
     public void initialize() {
-        for (User user : User.users) {
+        for (User user : Data.getUsers()) {
             this.users.add(user.getName()); //added this keyword for clarity
         }
         userList.setItems(users);
@@ -38,7 +39,7 @@ public class AdminController {
             showAlert("Username already exists.");
             return;
         }
-        User.users.add(new User(newUser));
+        Data.addUser(new User(newUser));
         users.add(newUser);
         usernameField.clear();
     }
@@ -56,7 +57,7 @@ public class AdminController {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent() && result.get().equals("Yes")) {
             users.remove(selectedUser);
-            User.users.remove(User.getUser(selectedUser));
+            Data.removeUser(Data.getUser(selectedUser));
         }
     }
 
