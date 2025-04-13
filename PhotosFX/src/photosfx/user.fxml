@@ -30,6 +30,9 @@
                 <Button onAction="#renameAlbum" text="Rename" />
                 <Button onAction="#openAlbum" text="Open Album" />
             </HBox>
+            <HBox alignment="CENTER">
+                <Button onAction="#searchPhotos" text="Search Photos" />
+            </HBox>
             <fx:include fx:id="exitOptions" source="exit_options.fxml" />
         </VBox>
     </bottom>
