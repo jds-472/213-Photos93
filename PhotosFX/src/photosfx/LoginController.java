@@ -11,8 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import model.Data;
-import model.User;
-
 
 public class LoginController {
 
