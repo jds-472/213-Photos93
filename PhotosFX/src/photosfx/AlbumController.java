@@ -24,11 +24,13 @@ public class AlbumController {
 
     @FXML private Label albumLabel;
     @FXML private ImageView stock;
-    @FXML private Button photoOption0;
-    @FXML private Button photoOption1;
-    @FXML private Button photoOption2;
-    @FXML private Button photoOption3;
-    @FXML private HBox photoOptions;
+    // @FXML private Button photoOption0;
+    // @FXML private Button photoOption1;
+    // @FXML private Button photoOption2;
+    // @FXML private Button photoOption3;
+    // @FXML private HBox photoOptions;
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("photo_options.fxml"));
+    Node photoOptions;
     @FXML private VBox pictureBox;
     @FXML private VBox leftBox;
     @FXML private VBox rightBox;
@@ -39,6 +41,11 @@ public class AlbumController {
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
 
     public void initialize() {
+        try {
+            photoOptions = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         albumLabel.setText("You are in the album " + Data.getCurrentAlbum().getName() + "!");
         leftBox.getChildren().clear();
         rightBox.getChildren().clear();
@@ -91,84 +98,6 @@ public class AlbumController {
         Data.setCurrentPhoto(photoMap.get(pictureContainer));
     }
 
-    public void addTag(ActionEvent event)
-    {
-        //create popup to list current tags to select from and add new tags
-        ChoiceDialog<String> choice = new ChoiceDialog<>("create new tag", Tag.tagTypes);
-        choice.getItems().add("create new tag");
-        choice.setTitle("Add a Tag");
-        choice.setHeaderText("Select a tag to add to the photo or create a new one");
-        Optional<String> result = choice.showAndWait();
-        if (result.isPresent()) {
-            if (result.get().equals("create new tag")) {
-                TextInputDialog newTagDialog = new TextInputDialog("new tag name");
-                newTagDialog.setTitle("Create a new tag");
-                Optional<String> newTagResult = newTagDialog.showAndWait();
-                if (newTagResult.isPresent()) {
-                    Tag.tagTypes.add(newTagResult.get());
-                }
-            } else {
-                TextInputDialog dialog = new TextInputDialog("new tag value");
-                dialog.setTitle("Set the value for the tag " + result.get());
-                Optional<String> tagValueResult = dialog.showAndWait();
-                if (tagValueResult.isPresent()) {
-                    Tag tag = new Tag(result.get(), tagValueResult.get());
-                    Data.getCurrentPhoto().addTag(tag);
-                }
-            }
-        }
-    }
-
-    public void removeTag(ActionEvent event) {
-        //create popup to list current tags to select from and remove
-        if(Data.getCurrentPhoto().getTags().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("No Tags");
-            alert.setHeaderText("No tags to remove");
-            alert.setContentText("This photo has no tags to remove.");
-            alert.showAndWait();
-            return;
-        }
-        ChoiceDialog<String> choice = new ChoiceDialog<>("remove tag", Data.getCurrentPhoto().getTagsAsString());
-        choice.setTitle("Remove a Tag");
-        choice.setHeaderText("Select a tag to remove from the photo");
-        Optional<String> result = choice.showAndWait();
-        if (result.isPresent()) {
-            for (Tag tag : Data.getCurrentPhoto().getTags()) {
-                if (tag.toString().equals(result.get())) {
-                    Data.getCurrentPhoto().removeTag(tag);
-                    break;
-                }
-            }
-        }
-    }
-
-    public void captionPhoto(ActionEvent event) {
-        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
-        Label captionLabel = (Label) pictureContainer.getChildren().get(1);
-        TextInputDialog dialog = new TextInputDialog(captionLabel.getText());
-        dialog.setTitle("Caption Photo");
-        Optional<String> result = dialog.showAndWait();
-        while(!result.isPresent() || result.get().equals("")) {
-            dialog.setContentText("Caption is invalid, try again");
-            result = dialog.showAndWait();
-        }
-        Data.getCurrentPhoto().setCaption(result.get());
-        captionLabel.setText(result.get());
-        
-    }
-
-    public void displayPhoto(ActionEvent event) {
-        try {
-            Data.setCurrentFXML(Data.DISPLAYFXML);
-            Parent root = FXMLLoader.load(getClass().getResource("display.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void slideShow(ActionEvent event) {
         // try {
