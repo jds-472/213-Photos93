@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Album {
+public class Album implements Serializable{
     private String name;
     private Set<Photo> photos = new HashSet<>();
 

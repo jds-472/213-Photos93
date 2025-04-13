@@ -2,12 +2,12 @@ package model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.io.*;
 
-public class User {
+public class User implements Serializable{
     private String name;
     // private String password;
     private Set<Album> albums = new HashSet<>();
-    private static Set<User> users = new HashSet<>();
 
     public User(String name) {
         this.name = name;
@@ -30,23 +30,6 @@ public class User {
         return null;
     }
 
-    public static User getUser(String name) {
-        for (User user : users) {
-            if (user.getName().equals(name)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public static void addUser(User user) {
-        users.add(user);
-    }
-
-    public static void removeUser(User user) {
-        users.remove(user);
-    }
-
     public void addAlbum(Album album) {
         albums.add(album);
     }
@@ -59,7 +42,11 @@ public class User {
         return name;
     }
 
-    public static Set<User> getUsers() {
-        return users;
-    }
+    // public static void writeUsersToFile() {
+    //     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+    //         oos.writeObject(Data.getUsers());
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 }

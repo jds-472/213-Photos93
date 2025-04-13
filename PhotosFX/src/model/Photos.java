@@ -23,7 +23,7 @@ public class Photos extends Application {
 
     public static void main(String[] args) {
         User stock = new User("stock");
-        User.addUser(stock);
+        Data.addUser(stock);
 
         Set<Photo> photos = new HashSet<>();
         photos.add(new Photo("pacman", new File("../data/pacmanstock.png").toURI().toString()));

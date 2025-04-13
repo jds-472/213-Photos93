@@ -1,10 +1,12 @@
 package model;
 
 import javafx.scene.image.Image;
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Photo {
+public class Photo implements Serializable{
     // private String date;
     private String caption;
     private String pathName;
