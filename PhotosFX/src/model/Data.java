@@ -19,6 +19,7 @@ public class Data {
     public static final int ALBUMFXML = 3;
     public static final int DISPLAYFXML = 4;
     public static final int SLIDESHOWFXML = 5;
+    public static final int SEARCHFXML = 6;
 
     public static final String storeFile = "users.ser";
     public static final String storeDir = "src" + File.separator + "model" + File.separator + "store";
