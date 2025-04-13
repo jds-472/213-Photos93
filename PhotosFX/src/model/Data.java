@@ -88,10 +88,20 @@ public class Data {
 
     public static void loadData() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(storeDir + File.separator + storeFile))) {
-            if (ois.readObject() instanceof Set<?>) {
-                Object obj = ois.readObject();
-                if (obj instanceof Set<?>) {
-                    users = (Set<User>) obj;
+            Object obj = ois.readObject();
+            if (obj instanceof Set<?>) {
+                users = (Set<User>) obj;
+            }
+            for (User user : users) {
+                System.out.println(user);
+                for (Album album : user.getAlbums()) {
+                    System.out.println("  " + album);
+                    for (Photo photo : album.getPhotos()) {
+                        System.out.println("    " + photo);
+                        for (Tag tag : photo.getTags()) {
+                            System.out.println("      Tag: " + tag);
+                        }
+                    }
                 }
             }
         } catch (IOException | ClassNotFoundException e) {

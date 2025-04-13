@@ -28,4 +28,8 @@ public class Album implements Serializable{
     public Set<Photo> getPhotos() {
         return photos;
     }
+
+    public String toString() {
+        return name;
+    }
 }

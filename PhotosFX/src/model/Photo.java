@@ -10,7 +10,7 @@ public class Photo implements Serializable{
     // private String date;
     private String caption;
     private String pathName;
-    private Image picture;
+    transient private Image picture;
     private Set<Tag> tags = new HashSet<>();
 
     public Photo(String caption, String pathName) {
@@ -33,6 +33,7 @@ public class Photo implements Serializable{
     }
 
     public Image getPicture() {
+        picture = new Image(pathName);
         return picture;
     }
 
@@ -72,6 +73,8 @@ public class Photo implements Serializable{
         tags.remove(tag);
     }
 
-
+    public String toString() {
+        return caption + " " + pathName + " " + tags;
+    }
 
 }
