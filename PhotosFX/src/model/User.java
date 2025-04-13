@@ -41,12 +41,4 @@ public class User implements Serializable{
     public String toString() {
         return name;
     }
-
-    // public static void writeUsersToFile() {
-    //     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-    //         oos.writeObject(Data.getUsers());
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
 }

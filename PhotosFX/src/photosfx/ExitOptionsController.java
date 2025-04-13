@@ -37,7 +37,7 @@ public class ExitOptionsController {
     }
 
     public void logOut(ActionEvent event) {
-        // save stuff to disk
+        Data.saveData();
         Data.setCurrentFXML(Data.LOGINFXML);
         Data.setCurrentUser(null);
         Data.setCurrentAlbum(null);
@@ -46,7 +46,7 @@ public class ExitOptionsController {
     }
 
     public void quit(ActionEvent event) {
-        // save stuff to disk
+        Data.saveData();
         System.exit(0);
     }
 

@@ -18,6 +18,11 @@ public class Photos extends Application {
         primaryStage.setTitle("RU Photo Store");
         primaryStage.setScene(new Scene(root, 400, 300));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> {
+            Data.saveData();
+            e.consume();
+            System.exit(0);
+        });
     }
 
 

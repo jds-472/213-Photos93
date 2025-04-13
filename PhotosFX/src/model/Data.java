@@ -2,6 +2,7 @@ package model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.io.*;
 
 public class Data {
     private Data(){}
@@ -18,6 +19,10 @@ public class Data {
     public static final int ALBUMFXML = 3;
     public static final int DISPLAYFXML = 4;
     public static final int SLIDESHOWFXML = 5;
+
+    public static final String storeFile = "users.ser";
+    public static final String storeDir = "src" + File.separator + "model" + File.separator + "store";
+    final static long serialVersionUID = 1L;
 
 
     public static User getCurrentUser() {
@@ -71,5 +76,26 @@ public class Data {
     
     public static Set<User> getUsers() {
         return users;
+    }
+
+        public static void saveData() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storeDir + File.separator + storeFile))) {
+            oos.writeObject(users);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadData() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(storeDir + File.separator + storeFile))) {
+            if (ois.readObject() instanceof Set<?>) {
+                Object obj = ois.readObject();
+                if (obj instanceof Set<?>) {
+                    users = (Set<User>) obj;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
