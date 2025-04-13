@@ -146,6 +146,18 @@ public class UserController {
         return String.format("%s (%d photo%s, %s)", album.getName(), count, count == 1 ? "" : "s", dateRange);
     }
 
+    public void searchPhotos(ActionEvent event) {
+        try {
+            Data.setCurrentFXML(Data.SEARCHFXML);
+            Parent root = FXMLLoader.load(getClass().getResource("search.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }   
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Notice");
