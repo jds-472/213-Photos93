@@ -3,32 +3,21 @@ package photosfx;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Photo;
-import model.Tag;
 import model.Data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import javafx.scene.control.*;
 
 public class AlbumController {
 
     @FXML private Label albumLabel;
     @FXML private ImageView stock;
-    // @FXML private Button photoOption0;
-    // @FXML private Button photoOption1;
-    // @FXML private Button photoOption2;
-    // @FXML private Button photoOption3;
-    // @FXML private HBox photoOptions;
     FXMLLoader loader = new FXMLLoader(getClass().getResource("photo_options.fxml"));
     Node photoOptions;
     @FXML private VBox pictureBox;
