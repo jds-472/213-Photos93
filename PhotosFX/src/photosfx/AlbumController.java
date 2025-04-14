@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.TilePane;
 import javafx.geometry.Pos;
-import javafx.stage.Popup;
 
 public class AlbumController {
 
@@ -34,15 +33,9 @@ public class AlbumController {
 
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
-    private Popup popup = new Popup(); //Popup for the photo options
-
-    //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
-
     public void initialize() {
         try {
             photoOptions = loader.load();
-            popup.getContent().add(photoOptions);
-            popup.setAutoHide(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,16 +44,15 @@ public class AlbumController {
         displayPane.getChildren().clear();
         if (Data.getCurrentAlbum() == null) {return;}
         photos = new ArrayList<>(Data.getCurrentAlbum().getPhotos());
-        for (int i = 0; i < photos.size(); i++) {
-            ImageView imageView = new ImageView(photos.get(i).getPicture());
+        for (Photo photo : photos) {
+            ImageView imageView = new ImageView(photo.getPicture());
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
-            VBox pictureContainer = new VBox(imageView, new Label(photos.get(i).getCaption()));
+            VBox pictureContainer = new VBox(imageView, new Label(photo.getCaption()));
             pictureContainer.spacingProperty().setValue(5);
             pictureContainer.alignmentProperty().setValue(Pos.CENTER);
             pictureContainer.setOnMouseClicked(this::showOptions);
-            // pictureContainer.setPrefWidth(120);
-            photoMap.put(pictureContainer, photos.get(i));
+            photoMap.put(pictureContainer, photo);
             displayPane.getChildren().add(pictureContainer);
         }
     }
