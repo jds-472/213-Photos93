@@ -17,6 +17,7 @@ public class AdminController {
     private ObservableList<String> users = FXCollections.observableArrayList();
 
     public void initialize() {
+        Data.setCurrentFXML(Data.ADMINFXML);
         for (User user : Data.getUsers()) {
             this.users.add(user.getName()); //added this keyword for clarity
         }

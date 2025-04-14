@@ -14,7 +14,7 @@ public class ExitOptionsController {
     public void goBack (ActionEvent event) {
         switch (Data.getCurrentFXML()) {
             case Data.USERFXML, Data.ADMINFXML:
-                transitionFXML(event, "login.fxml", Data.LOGINFXML);
+                transitionFXML(event, "login.fxml");
                 Data.setCurrentUser(null);
                 break;
             case Data.LOGINFXML:
@@ -24,11 +24,11 @@ public class ExitOptionsController {
                 alert.showAndWait();
                 break;
             case Data.ALBUMFXML, Data.SEARCHFXML:
-                transitionFXML(event, "user.fxml", Data.USERFXML);
+                transitionFXML(event, "user.fxml");
                 Data.setCurrentAlbum(null);
                 break;
             case Data.DISPLAYFXML, Data.SLIDESHOWFXML:
-                transitionFXML(event, "album.fxml", Data.ALBUMFXML);
+                transitionFXML(event, "album.fxml");
                 Data.setCurrentPhoto(null);
                 break;
             default:
@@ -38,11 +38,10 @@ public class ExitOptionsController {
 
     public void logOut(ActionEvent event) {
         Data.saveData();
-        Data.setCurrentFXML(Data.LOGINFXML);
         Data.setCurrentUser(null);
         Data.setCurrentAlbum(null);
         Data.setCurrentPhoto(null);
-        transitionFXML(event, "login.fxml", Data.LOGINFXML);
+        transitionFXML(event, "login.fxml");
     }
 
     public void quit(ActionEvent event) {
@@ -50,11 +49,10 @@ public class ExitOptionsController {
         System.exit(0);
     }
 
-    private void transitionFXML(ActionEvent event, String fxml, int FXML)
+    private void transitionFXML(ActionEvent event, String fxmlS)
     {
         try {
-            Data.setCurrentFXML(FXML);
-            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlS));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

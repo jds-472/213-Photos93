@@ -90,7 +90,6 @@ public class PhotoOptionsController {
             return;
         }
         try {
-            Data.setCurrentFXML(Data.DISPLAYFXML);
             Parent root = FXMLLoader.load(getClass().getResource("display.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

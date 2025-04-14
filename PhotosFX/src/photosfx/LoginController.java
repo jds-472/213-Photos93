@@ -32,7 +32,6 @@ public class LoginController {
         Parent root = null;
         if (!username.isEmpty()) {
             if (username.equals("admin")) {
-                Data.setCurrentFXML(Data.ADMINFXML);
                 try {
                     root = FXMLLoader.load(getClass().getResource("admin.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -44,7 +43,6 @@ public class LoginController {
             } 
             else if (Data.getUsers().contains(Data.getUser(username))) {
                 Data.setCurrentUser(Data.getUser(username));
-                Data.setCurrentFXML(Data.USERFXML);
                 try {
                     root = FXMLLoader.load(getClass().getResource("user.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

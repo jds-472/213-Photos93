@@ -36,6 +36,7 @@ public class SearchController {
     private List<Photo> results = new ArrayList<>();
 
     public void initialize() {
+        Data.setCurrentFXML(Data.SEARCHFXML);
         tagLogic.getItems().addAll("AND", "OR");
         tagLogic.getSelectionModel().selectFirst();
     
@@ -134,16 +135,4 @@ public class SearchController {
             Data.getCurrentUser().addAlbum(newAlbum);
         });
     }
-
-    // public void goBack(ActionEvent event) {
-    //     try {
-    //         Data.setCurrentFXML(Data.USERFXML);
-    //         Parent root = FXMLLoader.load(getClass().getResource("user.fxml"));
-    //         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    //         stage.setScene(new Scene(root));
-    //         stage.show();
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
 }

@@ -39,8 +39,8 @@ public class AlbumController {
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
     public void initialize() {
+        Data.setCurrentFXML(Data.ALBUMFXML);
         Data.setCurrentPhoto(null);
-        // Data.setCurrentFXML(Data.ALBUMFXML);
         albumLabel.setText("You are in the album " + Data.getCurrentAlbum().getName() + "!");
         albumOptionsLabel.setText("Album Options for " + Data.getCurrentAlbum().getName() + ":");
         displayPane.getChildren().clear();
@@ -152,7 +152,6 @@ public class AlbumController {
     }
 
     public void slideShow(ActionEvent event) {
-        Data.setCurrentFXML(Data.SLIDESHOWFXML);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("slideshow.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

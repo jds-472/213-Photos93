@@ -31,6 +31,7 @@ public class SlideshowController {
     private int index = 0;
 
     public void initialize() {
+        Data.setCurrentFXML(Data.SLIDESHOWFXML);
         photos = new ArrayList<>(Data.getCurrentAlbum().getPhotos());
         if (photos.isEmpty()) return;
         displayPhoto(0);
@@ -73,7 +74,6 @@ public class SlideshowController {
     public void exitSlideshow(ActionEvent event) {
         try {
             Data.setCurrentPhoto(null);
-            Data.setCurrentFXML(Data.ALBUMFXML);
             Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

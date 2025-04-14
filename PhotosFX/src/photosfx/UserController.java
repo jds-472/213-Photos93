@@ -31,6 +31,7 @@ public class UserController {
     private Map<String, Album> albumMap = new HashMap<>(); // Map to store album names and their corresponding Album objects
 
     public void initialize() {
+        Data.setCurrentFXML(Data.USERFXML);
         userAlbums = Data.getCurrentUser().getAlbums();
         userWelcome.setText("Welcome " + Data.getCurrentUser().getName() + " to your Albums!");
         for (Album album : userAlbums) {
@@ -122,7 +123,6 @@ public class UserController {
             return;
         }
         try {
-            Data.setCurrentFXML(Data.ALBUMFXML);
             String selected = albumList.getSelectionModel().getSelectedItem();
             Data.setCurrentAlbum(albumMap.get(selected)); // Get the Album object from the map
             Parent root = FXMLLoader.load(getClass().getResource("album.fxml"));

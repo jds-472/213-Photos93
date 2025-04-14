@@ -26,6 +26,7 @@ public class DisplayController {
     @FXML ScrollPane scrollContainer;
     
     public void initialize() {
+        Data.setCurrentFXML(Data.DISPLAYFXML);
         Photo photo = Data.getCurrentPhoto();
         Image image = photo.getPicture();
         imageDisplay.setImage(image);
