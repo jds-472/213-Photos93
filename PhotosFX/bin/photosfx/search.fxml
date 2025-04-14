@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.SearchController"
+      spacing="15" alignment="CENTER">
+        <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+    <Label text="Search Photos" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Start Date:" />
+        <DatePicker fx:id="startDate" />
+        <Label text="End Date:" />
+        <DatePicker fx:id="endDate" />
+        <Button text="Search by Date" onAction="#searchByDate"/>
+    </HBox>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Tag 1:" />
+        <ChoiceBox fx:id="tagType1" />
+        <TextField fx:id="tagValue1" promptText="e.g. amy" />
+        <Label text="Tag 2:" />
+        <ChoiceBox fx:id="tagType2" />
+        <TextField fx:id="tagValue2" promptText="optional" />
+        <ChoiceBox fx:id="tagLogic" />
+        <Button text="Search by Tag(s)" onAction="#searchByTags"/>
+    </HBox>
+
+    <Label text="Search Results" style="-fx-font-size: 16px;" />
+    <ScrollPane prefHeight="300" fitToWidth="true">
+        <TilePane fx:id="resultsPane" hgap="10" vgap="10" />
+        <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+    </ScrollPane>
+
+    <Button text="Create Album from Results" onAction="#createAlbumFromResults" />
+    <Button text="Back to User View" onAction="#goBack"/>
+
+</VBox>
