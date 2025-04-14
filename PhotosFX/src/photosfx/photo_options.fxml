@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="photoOptions" spacing="5.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.PhotoOptionsController">
+<VBox fx:id="photoOptions" spacing="7.5" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photosfx.PhotoOptionsController">
    <children>
       <Button fx:id="photoOption0" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
       <Button fx:id="photoOption1" mnemonicParsing="false" onAction="#removeTag" text="Remove Tag" />
       <Button fx:id="photoOption2" mnemonicParsing="false" onAction="#displayPhoto" text="Display" />
       <Button fx:id="photoOption3" mnemonicParsing="false" onAction="#captionPhoto" text="Caption This" />
    </children>
-</HBox>
+</VBox>

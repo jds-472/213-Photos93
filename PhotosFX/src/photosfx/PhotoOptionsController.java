@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Data;
+import model.Photo;
 import model.Tag;
 
 public class PhotoOptionsController {
@@ -22,6 +23,11 @@ public class PhotoOptionsController {
 
     public void addTag(ActionEvent event)
     {
+        Photo currentPhoto = Data.getCurrentPhoto();
+        if (currentPhoto == null) {
+            noPhotoAlert();
+            return;
+        }
         //create popup to list current tags to select from and add new tags
         ChoiceDialog<String> choice = new ChoiceDialog<>("create new tag", Tag.tagTypes);
         choice.getItems().add("create new tag");
@@ -42,15 +48,20 @@ public class PhotoOptionsController {
                 Optional<String> tagValueResult = dialog.showAndWait();
                 if (tagValueResult.isPresent()) {
                     Tag tag = new Tag(result.get(), tagValueResult.get());
-                    Data.getCurrentPhoto().addTag(tag);
+                    currentPhoto.addTag(tag);
                 }
             }
         }
     }
 
     public void removeTag(ActionEvent event) {
+        Photo currentPhoto = Data.getCurrentPhoto();
+        if (currentPhoto == null) {
+            noPhotoAlert();
+            return;
+        }
         //create popup to list current tags to select from and remove
-        if(Data.getCurrentPhoto().getTags().isEmpty()) {
+        if(currentPhoto.getTags().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No Tags");
             alert.setHeaderText("No tags to remove");
@@ -58,14 +69,14 @@ public class PhotoOptionsController {
             alert.showAndWait();
             return;
         }
-        ChoiceDialog<String> choice = new ChoiceDialog<>("remove tag", Data.getCurrentPhoto().getTagsAsString());
+        ChoiceDialog<String> choice = new ChoiceDialog<>("remove tag", currentPhoto.getTagsAsString());
         choice.setTitle("Remove a Tag");
         choice.setHeaderText("Select a tag to remove from the photo");
         Optional<String> result = choice.showAndWait();
         if (result.isPresent()) {
-            for (Tag tag : Data.getCurrentPhoto().getTags()) {
+            for (Tag tag : currentPhoto.getTags()) {
                 if (tag.toString().equals(result.get())) {
-                    Data.getCurrentPhoto().removeTag(tag);
+                    currentPhoto.removeTag(tag);
                     break;
                 }
             }
@@ -73,6 +84,11 @@ public class PhotoOptionsController {
     }
 
     public void displayPhoto(ActionEvent event) {
+        Photo currentPhoto = Data.getCurrentPhoto();
+        if (currentPhoto == null) {
+            noPhotoAlert();
+            return;
+        }
         try {
             Data.setCurrentFXML(Data.DISPLAYFXML);
             Parent root = FXMLLoader.load(getClass().getResource("display.fxml"));
@@ -85,6 +101,11 @@ public class PhotoOptionsController {
     }
 
     public void captionPhoto(ActionEvent event) {
+        Photo currentPhoto = Data.getCurrentPhoto();
+        if (currentPhoto == null) {
+            noPhotoAlert();
+            return;
+        }
         VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
         Label captionLabel = (Label) pictureContainer.getChildren().get(1);
         TextInputDialog dialog = new TextInputDialog(captionLabel.getText());
@@ -94,8 +115,17 @@ public class PhotoOptionsController {
             dialog.setContentText("Caption is invalid, try again");
             result = dialog.showAndWait();
         }
-        Data.getCurrentPhoto().setCaption(result.get());
+        currentPhoto.setCaption(result.get());
         captionLabel.setText(result.get());
         
+    }
+
+    private void noPhotoAlert()
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("No Photo Selected");
+        alert.setHeaderText("No photo selected");
+        alert.setContentText("Please select a photo to view options.");
+        alert.showAndWait();
     }
 }

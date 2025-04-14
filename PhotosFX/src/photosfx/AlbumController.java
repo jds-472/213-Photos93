@@ -16,62 +16,58 @@ import javafx.scene.control.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.TilePane;
+import javafx.geometry.Pos;
+import javafx.stage.Popup;
 
 public class AlbumController {
 
     @FXML private Label albumLabel;
+    @FXML private Label photoOptionsLabel;
+    @FXML private Label albumOptionsLabel;
     @FXML private ImageView stock;
     FXMLLoader loader = new FXMLLoader(getClass().getResource("photo_options.fxml"));
     Node photoOptions;
     @FXML private VBox pictureBox;
-    @FXML private VBox leftBox;
-    @FXML private VBox rightBox;
+    @FXML private TilePane displayPane;
     private ArrayList<Photo> photos;
 
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
+
+    private Popup popup = new Popup(); //Popup for the photo options
 
     //I have no idea how to get the objects from the output stream yet so I'm just gonna initalize the photos to the stock
 
     public void initialize() {
         try {
             photoOptions = loader.load();
+            popup.getContent().add(photoOptions);
+            popup.setAutoHide(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
         albumLabel.setText("You are in the album " + Data.getCurrentAlbum().getName() + "!");
-        leftBox.getChildren().clear();
-        rightBox.getChildren().clear();
+        albumOptionsLabel.setText("Album Options for " + Data.getCurrentAlbum().getName() + ":");
+        displayPane.getChildren().clear();
         if (Data.getCurrentAlbum() == null) {return;}
         photos = new ArrayList<>(Data.getCurrentAlbum().getPhotos());
         for (int i = 0; i < photos.size(); i++) {
-            ImageView stock = new ImageView(photos.get(i).getPicture());
-            stock.setFitHeight(200);
-            stock.setFitWidth(200);
-            VBox pictureContainer = new VBox(stock, new Label(photos.get(i).getCaption()));
+            ImageView imageView = new ImageView(photos.get(i).getPicture());
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            VBox pictureContainer = new VBox(imageView, new Label(photos.get(i).getCaption()));
             pictureContainer.spacingProperty().setValue(5);
-            pictureContainer.alignmentProperty().setValue(javafx.geometry.Pos.CENTER);
+            pictureContainer.alignmentProperty().setValue(Pos.CENTER);
             pictureContainer.setOnMouseClicked(this::showOptions);
+            // pictureContainer.setPrefWidth(120);
             photoMap.put(pictureContainer, photos.get(i));
-            if (i % 2 == 0) {
-                leftBox.getChildren().add(pictureContainer);
-            } else {
-                rightBox.getChildren().add(pictureContainer);
-            }
+            displayPane.getChildren().add(pictureContainer);
         }
     }
 
     private void removePhotoOptions()
     {
-        for (Node node : leftBox.getChildren()) {
-            if (node instanceof VBox) {
-                VBox vbox = (VBox) node;
-                if (vbox.getChildren().contains(photoOptions)) {
-                    vbox.getChildren().remove(photoOptions);
-                    return; // Exit the loop once the old photoOptions is removed
-                }
-            }
-        }
-        for (Node node : rightBox.getChildren()) {
+        for (Node node : displayPane.getChildren()) {
             if (node instanceof VBox) {
                 VBox vbox = (VBox) node;
                 if (vbox.getChildren().contains(photoOptions)) {
@@ -84,10 +80,11 @@ public class AlbumController {
 
     public void showOptions(MouseEvent event)
     {
-        removePhotoOptions();
+        // removePhotoOptions();
         VBox pictureContainer = (VBox) event.getSource();
-        pictureContainer.getChildren().add(photoOptions);
+        // pictureContainer.getChildren().add(photoOptions);
         Data.setCurrentPhoto(photoMap.get(pictureContainer));
+        photoOptionsLabel.setText("Photo Options for " + Data.getCurrentPhoto().getCaption() + ":");
     }
 
 
