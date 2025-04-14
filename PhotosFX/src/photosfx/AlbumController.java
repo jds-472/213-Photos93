@@ -30,19 +30,35 @@ public class AlbumController {
     @FXML private Button copyPhotoButton;
     @FXML private Button movePhotoButton;
     @FXML private ImageView stock;
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("photo_options.fxml"));
-    Node photoOptions;
     @FXML private VBox pictureBox;
     @FXML private TilePane displayPane;
+    @FXML private VBox photoOptions;
+    @FXML private VBox albumOptionsBox;
+    private PhotoOptionsController photoOptionsController;
     private ArrayList<Photo> photos;
 
     private Map<VBox, Photo> photoMap = new HashMap<>(); //Map for storing the photo and its corresponding VBox
 
     public void initialize() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("photo_options.fxml"));
+            photoOptions = loader.load();
+            photoOptionsController = loader.getController();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        photoOptionsController.setAlbumController(this);
+        albumOptionsBox.getChildren().add(photoOptions);
         Data.setCurrentFXML(Data.ALBUMFXML);
         Data.setCurrentPhoto(null);
         albumLabel.setText("You are in the album " + Data.getCurrentAlbum().getName() + "!");
         albumOptionsLabel.setText("Album Options for " + Data.getCurrentAlbum().getName() + ":");
+        refresh();
+    }
+
+    public void refresh()
+    {
         displayPane.getChildren().clear();
         if (Data.getCurrentAlbum() == null) {return;}
         photos = new ArrayList<>(Data.getCurrentAlbum().getPhotos());
@@ -79,6 +95,10 @@ public class AlbumController {
         photoOptionsLabel.setText("Photo Options for " + Data.getCurrentPhoto().getCaption() + ":");
     }
 
+    public void updatePhotoOptionsLabel() {
+        photoOptionsLabel.setText("Photo Options for " + Data.getCurrentPhoto().getCaption() + ":");
+    }
+
     public void addPhoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an Image");
@@ -88,7 +108,7 @@ public class AlbumController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         java.io.File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            Data.getCurrentAlbum().addPhoto(new Photo(file.getAbsolutePath(), file.getName())); //have to check if photo is a copy here
+            Data.getCurrentAlbum().addPhoto(new Photo(file.getName(), file.toURI().toString())); //have to check if photo is a copy here
             initialize();
         }
     }

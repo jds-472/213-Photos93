@@ -37,10 +37,9 @@
             </ScrollPane>
          </center>
          <left>
-            <VBox BorderPane.alignment="CENTER">
+            <VBox fx:id="albumOptionsBox" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="photoOptionsLabel" text="Options for:" />
-                  <fx:include source="photo_options.fxml" />
                </children>
             </VBox>
          </left>

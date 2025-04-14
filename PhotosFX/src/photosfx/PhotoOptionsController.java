@@ -14,11 +14,14 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Album;
 import model.Data;
 import model.Photo;
 import model.Tag;
 
 public class PhotoOptionsController {
+
+    private AlbumController albumController;
     
 
     public void addTag(ActionEvent event)
@@ -105,9 +108,7 @@ public class PhotoOptionsController {
             noPhotoAlert();
             return;
         }
-        VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
-        Label captionLabel = (Label) pictureContainer.getChildren().get(0);
-        TextInputDialog dialog = new TextInputDialog(captionLabel.getText());
+        TextInputDialog dialog = new TextInputDialog(Data.getCurrentPhoto().getCaption());
         dialog.setTitle("Caption Photo");
         Optional<String> result = dialog.showAndWait();
         while(!result.isPresent() || result.get().equals("")) {
@@ -115,8 +116,12 @@ public class PhotoOptionsController {
             result = dialog.showAndWait();
         }
         currentPhoto.setCaption(result.get());
-        captionLabel.setText(result.get());
-        
+        albumController.refresh();
+        albumController.updatePhotoOptionsLabel();
+    }
+
+    public void setAlbumController(AlbumController albumController) {
+        this.albumController = albumController;
     }
 
     private void noPhotoAlert()
