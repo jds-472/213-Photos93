@@ -156,7 +156,6 @@ public class Data {
     /**
      * Saves the data to a file using serialization.
      *
-     * @throws IOException if an I/O error occurs during serialization
      */
     public static void saveData() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storeDir + File.separator + storeFile))) {
@@ -169,8 +168,6 @@ public class Data {
     /**
      * Loads the data from a file using deserialization.
      *
-     * @throws IOException            if an I/O error occurs during deserialization
-     * @throws ClassNotFoundException if the class of a serialized object cannot be found
      */
     public static void loadData() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(storeDir + File.separator + storeFile))) {

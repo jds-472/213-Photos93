@@ -1,0 +1,36 @@
+==== CONFIGS ====		
+{
+    "base_path": "c:\\School\\SoftwareMethodology\\Photos\\Photos93\\PhotosFX\\src",
+    "out": "c:\\School\\SoftwareMethodology\\Photos\\Photos93\\data",
+    "javadoc_executable": "C:\\Program Files\\Java\\jdk-24\\bin\\javadoc.exe",
+    "exclude": [],
+    "raw_params": "--add-modules javafx.controls,javafx.fxml"
+}
+
+==== COMMAND ====
+"C:\Program Files\Java\jdk-24\bin\javadoc.exe" 
+	-sourcepath "c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src" 
+	-d "c:\School\SoftwareMethodology\Photos\Photos93\data" 
+	--add-modules javafx.controls,javafx.fxml
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\Album.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\Data.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\Photo.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\Photos.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\Tag.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\User.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\AdminController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\AlbumController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\DisplayController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\ExitOptionsController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\LoginController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\PhotoOptionsController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\SearchController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\SlideshowController.java"
+	"c:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\photosfx\UserController.java"
+
+
+==== JAVADOC OUTPUT ====
+error: bad name in value for --add-modules option: 'javafx.fxmlc:\School\SoftwareMethodology\Photos\Photos93\PhotosFX\src\model\Album.java'
+1 error
+
+
