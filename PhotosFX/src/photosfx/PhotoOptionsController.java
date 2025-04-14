@@ -107,7 +107,7 @@ public class PhotoOptionsController {
             return;
         }
         VBox pictureContainer = (VBox) ((Button) event.getSource()).getParent().getParent();
-        Label captionLabel = (Label) pictureContainer.getChildren().get(1);
+        Label captionLabel = (Label) pictureContainer.getChildren().get(0);
         TextInputDialog dialog = new TextInputDialog(captionLabel.getText());
         dialog.setTitle("Caption Photo");
         Optional<String> result = dialog.showAndWait();
