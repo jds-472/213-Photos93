@@ -21,6 +21,14 @@ public class User implements Serializable{
         return albums;
     }
 
+    public Set<String> getAlbumsAsString(){
+        Set<String> albumStrings = new HashSet<>();
+        for (Album album : albums) {
+            albumStrings.add(album.toString());
+        }
+        return albumStrings;
+    }
+
     public Album getAlbum(String name) {
         for (Album album : albums) {
             if (album.getName().equals(name)) {

@@ -38,6 +38,14 @@ public class Album implements Serializable{
         return photos.size();
     }
 
+    public void addPhoto(Photo photo) {
+        photos.add(photo);
+    }
+
+    public void removePhoto(Photo photo) {
+        photos.remove(photo);
+    }
+
     public LocalDateTime getEarliestDate()
     {
         LocalDateTime earliest = null;

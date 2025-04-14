@@ -18,10 +18,10 @@
             <VBox spacing="7.5" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="albumOptionsLabel" text="Options for:" />
-                  <Button mnemonicParsing="false" text="Add Photo" />
-                  <Button mnemonicParsing="false" text="Remove Photo" />
-                  <Button mnemonicParsing="false" text="Copy Photo" />
-                  <Button mnemonicParsing="false" text="Move Photo" />
+                  <Button mnemonicParsing="false" onAction="#addPhoto" text="Add Photo" />
+                  <Button mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />
+                  <Button fx:id="copyPhotoButton" mnemonicParsing="false" onAction="#moveOrCopy" text="Copy Photo" />
+                  <Button fx:id="movePhotoButton" mnemonicParsing="false" onAction="#moveOrCopy" text="Move Photo" />
                   <Button mnemonicParsing="false" onAction="#slideShow" text="Slideshow" />
                </children>
             </VBox>
