@@ -98,8 +98,16 @@ public class AlbumController {
             noPhotoAlert();
             return;
         }
-        Data.getCurrentAlbum().removePhoto(Data.getCurrentPhoto());
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("No", "No", "Yes");
+        dialog.setTitle("Delete Photo");
+        dialog.setHeaderText("Are you sure you want to delete " + Data.getCurrentPhoto().getCaption() + "?");
+        dialog.setContentText("Choose your option:");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent() && result.get().equals("Yes")) {
+            Data.getCurrentAlbum().removePhoto(Data.getCurrentPhoto());
+        }
         initialize();
+        
     }
 
     public void moveOrCopy(ActionEvent event)
