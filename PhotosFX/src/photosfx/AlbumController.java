@@ -107,9 +107,31 @@ public class AlbumController {
         );
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         java.io.File file = fileChooser.showOpenDialog(stage);
+        Photo newPhoto = new Photo(file.getName(), file.toURI().toString());
         if (file != null) {
-            Data.getCurrentAlbum().addPhoto(new Photo(file.getName(), file.toURI().toString())); //have to check if photo is a copy here
-            initialize();
+            for (model.Album album : Data.getCurrentUser().getAlbums()) {
+                for (Photo photo : album.getPhotos()) {
+                    if (photo.equals(newPhoto) && album.getName().equals(Data.getCurrentAlbum().getName())) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Duplicate Photo");
+                        alert.setHeaderText("Photo already exists in album " + album.getName());
+                        alert.setContentText("Please select a different photo.");
+                        alert.showAndWait();
+                        return;
+                    }
+                    else if (photo.equals(newPhoto))
+                    {
+                        onlyCopy(Data.getCurrentAlbum(), newPhoto);
+                        return;
+                    }
+                }
+            }
+            Data.getCurrentAlbum().addPhoto(newPhoto); //have to check if photo is a copy here
+            System.out.println("photo gets added");
+            for (Photo photo : Data.getCurrentAlbum().getPhotos()) {
+                System.out.println(photo.getCaption());
+            }
+            refresh();
         }
     }
 
@@ -126,7 +148,7 @@ public class AlbumController {
         if (result.isPresent() && result.get().equals("Yes")) {
             Data.getCurrentAlbum().removePhoto(Data.getCurrentPhoto());
         }
-        initialize();
+        refresh();
         
     }
 
@@ -166,8 +188,14 @@ public class AlbumController {
             {
                 Data.getCurrentAlbum().removePhoto(Data.getCurrentPhoto());
             }
-            initialize();
+            refresh();
         }
+    }
+    
+    private void onlyCopy(model.Album target, Photo photo)
+    {
+        target.addPhoto(photo);
+        refresh();
     }
 
     private void noPhotoAlert()

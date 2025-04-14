@@ -91,4 +91,11 @@ public class Photo implements Serializable {
     public String toString() {
         return caption + " | " + pathName + " | " + date + " | " + tags;
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Photo photo = (Photo) obj;
+        return pathName.equals(photo.pathName);
+    }
 }
