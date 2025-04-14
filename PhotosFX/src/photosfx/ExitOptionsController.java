@@ -23,7 +23,7 @@ public class ExitOptionsController {
                 alert.setHeaderText("Cannot go back from login screen");
                 alert.showAndWait();
                 break;
-            case Data.ALBUMFXML:
+            case Data.ALBUMFXML, Data.SEARCHFXML:
                 transitionFXML(event, "user.fxml", Data.USERFXML);
                 Data.setCurrentAlbum(null);
                 break;

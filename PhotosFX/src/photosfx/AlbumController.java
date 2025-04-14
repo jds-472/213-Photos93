@@ -65,30 +65,29 @@ public class AlbumController {
         }
     }
 
-    private void removePhotoOptions()
-    {
-        for (Node node : displayPane.getChildren()) {
-            if (node instanceof VBox) {
-                VBox vbox = (VBox) node;
-                if (vbox.getChildren().contains(photoOptions)) {
-                    vbox.getChildren().remove(photoOptions);
-                    return; // Exit the loop once the old photoOptions is removed
-                }
-            }
-        }
-    }
+    // private void removePhotoOptions()
+    // {
+    //     for (Node node : displayPane.getChildren()) {
+    //         if (node instanceof VBox) {
+    //             VBox vbox = (VBox) node;
+    //             if (vbox.getChildren().contains(photoOptions)) {
+    //                 vbox.getChildren().remove(photoOptions);
+    //                 return; // Exit the loop once the old photoOptions is removed
+    //             }
+    //         }
+    //     }
+    // }
 
     public void showOptions(MouseEvent event)
     {
-        // removePhotoOptions();
         VBox pictureContainer = (VBox) event.getSource();
-        // pictureContainer.getChildren().add(photoOptions);
         Data.setCurrentPhoto(photoMap.get(pictureContainer));
         photoOptionsLabel.setText("Photo Options for " + Data.getCurrentPhoto().getCaption() + ":");
     }
 
 
     public void slideShow(ActionEvent event) {
+        Data.setCurrentFXML(Data.SLIDESHOWFXML);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("slideshow.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

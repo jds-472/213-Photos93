@@ -135,15 +135,15 @@ public class SearchController {
         });
     }
 
-    public void goBack(ActionEvent event) {
-        try {
-            Data.setCurrentFXML(Data.USERFXML);
-            Parent root = FXMLLoader.load(getClass().getResource("user.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    // public void goBack(ActionEvent event) {
+    //     try {
+    //         Data.setCurrentFXML(Data.USERFXML);
+    //         Parent root = FXMLLoader.load(getClass().getResource("user.fxml"));
+    //         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    //         stage.setScene(new Scene(root));
+    //         stage.show();
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 }
