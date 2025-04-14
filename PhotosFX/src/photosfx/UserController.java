@@ -32,6 +32,8 @@ public class UserController {
 
     public void initialize() {
         Data.setCurrentFXML(Data.USERFXML);
+        albumList.getItems().clear();
+        albumMap.clear(); // Clear the map before populating it again
         userAlbums = Data.getCurrentUser().getAlbums();
         userWelcome.setText("Welcome " + Data.getCurrentUser().getName() + " to your Albums!");
         for (Album album : userAlbums) {
@@ -64,6 +66,7 @@ public class UserController {
         Data.getCurrentUser().addAlbum(new Album(name)); // Add the new album to the user's albums
         albumMap.put(name, new Album(name)); // Add the new album to the map
         albumNameField.clear();
+        initialize();
     }
 
     public void deleteAlbum(ActionEvent event) {
