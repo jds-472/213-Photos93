@@ -121,12 +121,15 @@ public class AlbumController {
                     }
                     else if (photo.equals(newPhoto))
                     {
-                        onlyCopy(Data.getCurrentAlbum(), newPhoto);
+                        onlyCopy(Data.getCurrentAlbum(), photo); //used existing reference 
+                        Data.saveData(); //save after copying
+                        refresh();
                         return;
                     }
                 }
             }
             Data.getCurrentAlbum().addPhoto(newPhoto); //have to check if photo is a copy here
+            Data.saveData(); //save after adding
             System.out.println("photo gets added");
             for (Photo photo : Data.getCurrentAlbum().getPhotos()) {
                 System.out.println(photo.getCaption());
