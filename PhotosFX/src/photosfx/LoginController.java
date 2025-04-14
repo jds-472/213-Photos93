@@ -12,21 +12,54 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import model.Data;
 
+/**
+ * The LoginController class is responsible for managing the login interface in the PhotosFX application.
+ * It handles user input, validates usernames, and transitions to the appropriate screen based on the user's role.
+ * 
+ * <p>This class interacts with the application's data layer to retrieve user information and manage the current user state.
+ * 
+ * <p>FXML elements such as {@code TextField} are used to capture user input.
+ * 
+ * <p>Key functionalities include:
+ * <ul>
+ *  <li>Validating user input</li>
+ *  <li>Transitioning to the admin or user interface based on the username</li>
+ * </ul>
+ * 
+ * @author [Joseph Scarpulla and Roger Ramirez]
+ * @version 1.0
+ */
 public class LoginController {
 
     @FXML
     private TextField userField;
 
+    /**
+     * Initializes the LoginController by setting the current FXML context.
+     * This method is called automatically by the JavaFX framework when the FXML file is loaded.
+     */
     public void initialize() {
         Data.setCurrentFXML(Data.LOGINFXML);
     }
 
+    /**
+     * Handles the key press event for the username field.
+     * If the Enter key is pressed, it triggers the enter method.
+     * 
+     * @param keyEvent the key event triggered by the user
+     */
     public void userFieldKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode().toString().equals("ENTER")) {
             enter(new ActionEvent(userField, null));
         }
     }
 
+    /**
+     * Handles the action of entering the application.
+     * Validates the username and transitions to the appropriate screen based on the user's role.
+     * 
+     * @param event the action event triggered by the user
+     */
     public void enter(ActionEvent event) {
         String username = userField.getText().trim();
         Parent root = null;

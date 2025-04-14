@@ -1,3 +1,9 @@
+package model;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.io.*;
+
 /**
  The {@code Data} class holds static fields and metohds used by the whole program.
  It provides functionality to set the current User, Album, and Photo, as well as to save and load data with Serialization.
@@ -13,12 +19,6 @@
  @author [Joseph Scarpulla and Roger Ramirez]
  @version 1.0
  */
-package model;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.io.*;
-
 public class Data {
     private Data(){}
 

@@ -1,3 +1,15 @@
+package model;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * The @code Photos class is the main entry point of the application.
  * It initializes the JavaFX application and sets up the primary stage.
@@ -15,19 +27,6 @@
  * @author [Joseph Scarpulla and Roger Ramirez]
  * @version 1.0
  */
-
-package model;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
-
 public class Photos extends Application {
 
     /**

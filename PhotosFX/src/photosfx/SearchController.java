@@ -7,11 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 
 import model.*;
 
@@ -19,6 +14,24 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * The SearchController class is responsible for managing the search functionality in the PhotosFX application.
+ * It allows users to search for photos based on date ranges and tags.
+ * 
+ * <p>This class interacts with the application's data layer to retrieve photos and manage the search results.
+ * 
+ * <p>FXML elements such as {@code DatePicker}, {@code ChoiceBox}, {@code TextField}, and {@code TilePane} are used to capture user input and display search results.
+ * 
+ * <p>Key functionalities include:
+ * <ul>
+ *   <li>Searching for photos by date range</li>
+ *   <li>Searching for photos by tags</li>
+ *   <li>Creating a new album from search results</li>
+ * </ul>
+ * 
+ * @author [Joseph Scarpulla and Roger Ramirez]
+ * @version 1.0
+ */
 public class SearchController {
 
     @FXML private DatePicker startDate;
@@ -35,6 +48,10 @@ public class SearchController {
 
     private List<Photo> results = new ArrayList<>();
 
+    /**
+     * Initializes the SearchController by setting the current FXML context and populating the tag type and logic choice boxes.
+     * This method is called automatically by the JavaFX framework when the FXML file is loaded.
+     */
     public void initialize() {
         Data.setCurrentFXML(Data.SEARCHFXML);
         tagLogic.getItems().addAll("AND", "OR");
@@ -47,6 +64,11 @@ public class SearchController {
         tagType2.getSelectionModel().selectFirst(); // optional
     }
 
+    /**
+     * Searches for photos based on the selected date range.
+     * If no date range is selected, it returns without performing the search
+     * @param event the action event triggered by the user
+     */
     public void searchByDate(ActionEvent event) {
         results.clear();
         resultsPane.getChildren().clear();
@@ -70,6 +92,11 @@ public class SearchController {
         displayResults();
     }
 
+    /**
+     * Searches for photos based on the selected tags and logic.
+     * If no tags are selected, it returns without performing the search.
+     * @param event the action event triggered by the user
+     */
     public void searchByTags(ActionEvent event) {
         results.clear();
         resultsPane.getChildren().clear();
@@ -102,6 +129,10 @@ public class SearchController {
         displayResults();
     }
 
+    /**
+     * Displays the search results in the results pane.
+     * Each photo is displayed with its image and caption.
+     */
     private void displayResults() {
         for (Photo photo : results) {
             ImageView imageView = new ImageView(photo.getPicture());
@@ -113,6 +144,12 @@ public class SearchController {
         }
     }
 
+    /**
+     * Creates a new album from the search results.
+     * If no results are found, it returns without performing the action.
+     * If the album name is empty or already exists, an alert is shown to the user.
+     * @param event the action event triggered by the user
+     */
     public void createAlbumFromResults(ActionEvent event) {
         if (results.isEmpty()) return;
 

@@ -1,3 +1,16 @@
+package model;
+
+import javafx.scene.image.Image;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.nio.file.*;
+import java.nio.file.attribute.FileTime;
+import java.io.IOException;
+import java.time.*;
+import java.net.URI;
+
 /**
  * The {@code Photo} class represents a photo that contains a collection of tags.
  * It provides functionality to manage tags, retrieve photo details, and compare photos with each other.
@@ -14,20 +27,6 @@
  * @author [Joseph Scarpulla and Roger Ramirez]
  * @version 1.0
  */
-
-package model;
-
-import javafx.scene.image.Image;
-
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.nio.file.*;
-import java.nio.file.attribute.FileTime;
-import java.io.IOException;
-import java.time.*;
-import java.net.URI;
-
 public class Photo implements Serializable {
     private LocalDateTime date;
     private String caption;

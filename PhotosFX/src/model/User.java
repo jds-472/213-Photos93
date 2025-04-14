@@ -1,3 +1,9 @@
+package model;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.io.*;
+
 /**
  * The {@code User} class represents a user that contains a collection of albums.
  * It provides functionality to manage albums and retrieve user details.
@@ -13,13 +19,6 @@
  * @author [Joseph Scarpulla and Roger Ramirez]
  * @version 1.0
  */
-
-package model;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.io.*;
-
 public class User implements Serializable{
     private String name;
     // private String password;

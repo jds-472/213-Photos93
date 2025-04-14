@@ -1,3 +1,9 @@
+package model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The {@code Tag} class represents a tag that is part of a Photo.
  * It provides functionality to manage the name and value of the tag.
@@ -15,13 +21,6 @@
  * @author [Joseph Scarpulla and Roger Ramirez]
  * @version 1.0
  */
-
-package model;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tag implements Serializable{
     private String name;
     private String value;

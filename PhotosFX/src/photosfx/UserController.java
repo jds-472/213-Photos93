@@ -19,7 +19,26 @@ import java.util.Optional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * The UserController class is responsible for managing the user interface in the PhotosFX application.
+ * It handles user interactions related to album management, including creating, deleting, renaming, and opening albums.
+ * 
+ * <p>This class interacts with the application's data layer to retrieve the current user and their albums.
+ * 
+ * <p>FXML elements such as {@code ListView}, {@code TextField}, and {@code Label} are used to display and interact with user albums.
+ * 
+ * <p>Key functionalities include:
+ * <ul>
+ *  <li>Creating a new album</li>
+ *  <li>Deleting an existing album</li>
+ *  <li>Renaming an album</li>
+ *  <li>Opening an album to view its photos</li>
+ *  <li>Searching for photos</li>
+ * </ul>
+ * 
+ * @author [Joseph Scarpulla and Roger Ramirez]
+ * @version 1.0
+ */
 public class UserController {
 
     @FXML private ListView<String> albumList;
@@ -30,6 +49,10 @@ public class UserController {
     private Set<Album> userAlbums;
     private Map<String, Album> albumMap = new HashMap<>(); // Map to store album names and their corresponding Album objects
 
+    /**
+     * Initializes the UserController by setting the current FXML context and populating the album list.
+     * This method is called automatically by the JavaFX framework when the FXML file is loaded.
+     */
     public void initialize() {
         Data.setCurrentFXML(Data.USERFXML);
         albumList.getItems().clear();
@@ -46,12 +69,24 @@ public class UserController {
         // albums = FXCollections.observableArrayList();
     }
 
+    /**
+     * Handles the key press event for the album name field.
+     * If the Enter key is pressed, it triggers the createAlbum method.
+     * 
+     * @param keyEvent the key event triggered by the user
+     */
     public void albumNameFieldKeyPressed(javafx.scene.input.KeyEvent keyEvent) {
         if (keyEvent.getCode().toString().equals("ENTER")) {
             createAlbum(new ActionEvent(albumNameField, null));
         }
     }
 
+    /**
+     * Creates a new album with the name provided in the album name field.
+     * Validates the input and updates the album list accordingly.
+     * 
+     * @param event the action event triggered by the user
+     */
     public void createAlbum(ActionEvent event) {
         String name = albumNameField.getText().trim();
         if (name.isEmpty()) {
@@ -69,6 +104,13 @@ public class UserController {
         initialize();
     }
 
+    /**
+     * Deletes the selected album from the album list.
+     * If no album is selected, an alert is shown to the user.
+     * A confirmation dialog is displayed to confirm the deletion.
+     * 
+     * @param event the action event triggered by the user
+     */
     public void deleteAlbum(ActionEvent event) {
         String selected = albumList.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -87,6 +129,13 @@ public class UserController {
         }
     }
 
+    /**
+     * Renames the selected album with a new name provided by the user.
+     * If no album is selected, an alert is shown to the user.
+     * If the new name is empty or already exists, an alert is shown to the user.
+     * 
+     * @param event the action event triggered by the user
+     */
     public void renameAlbum(ActionEvent event) {
         String selected = albumList.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -120,6 +169,12 @@ public class UserController {
         });
     }
 
+    /**
+     * Opens the selected album and transitions to the album view.
+     * If no album is selected, an alert is shown to the user.
+     * 
+     * @param event the action event triggered by the user
+     */
     public void openAlbum(ActionEvent event) {
         if (albumList.getSelectionModel().getSelectedItem() == null) {
             showAlert("No album selected.");
@@ -137,6 +192,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Displays the album data in a formatted string.
+     * 
+     * @param album the album to display
+     * @return the formatted string representing the album data
+     */
     private String displayAlbumData(Album album) {
         int count = album.getPhotoCount();
         LocalDateTime start = album.getEarliestDate();
@@ -149,6 +210,11 @@ public class UserController {
         return String.format("%s (%d photo%s, %s)", album.getName(), count, count == 1 ? "" : "s", dateRange);
     }
 
+    /**
+     * Searches for photos in the application and transitions to the search view.
+     * 
+     * @param event the action event triggered by the user
+     */
     public void searchPhotos(ActionEvent event) {
         try {
             Data.setCurrentFXML(Data.SEARCHFXML);
@@ -161,6 +227,11 @@ public class UserController {
         }
     }   
 
+    /**
+     * Displays an alert with the specified message.
+     * 
+     * @param message the message to display in the alert
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Notice");

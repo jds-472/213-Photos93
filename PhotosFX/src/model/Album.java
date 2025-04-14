@@ -1,3 +1,10 @@
+package model;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.time.LocalDateTime;
+
 /**
  * The {@code Album} class represents a photo album that contains a collection of photos.
  * It provides functionality to manage photos, retrieve album details, and determine
@@ -15,13 +22,6 @@
  * @author [Joseph Scarpulla and Roger Ramirez]
  * @version 1.0
  */
-package model;
-
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.time.LocalDateTime;
-
 public class Album implements Serializable{
     private String name;
     private Set<Photo> photos = new HashSet<>();
