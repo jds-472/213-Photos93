@@ -121,7 +121,7 @@ public class AlbumController {
                     }
                     else if (photo.equals(newPhoto))
                     {
-                        onlyCopy(Data.getCurrentAlbum(), photo); //used existing reference 
+                        onlyCopy(Data.getCurrentAlbum(), photo); //use existing reference to keep tags/caption when copying
                         Data.saveData(); //save after copying
                         refresh();
                         return;
