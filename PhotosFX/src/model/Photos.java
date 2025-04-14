@@ -1,3 +1,21 @@
+/**
+ * The @code Photos class is the main entry point of the application.
+ * It initializes the JavaFX application and sets up the primary stage.
+ * It also can set up an inital user and album.
+ * 
+ * <p>This class implements {@link Application} to allow JavaFX application functionality.
+ * 
+ * <p>Features of the {@code Photos} class include:
+ * <ul>
+ *  <li>Starting the JavaFX application</li>
+ *  <li>Loading data</li>
+ *  <li>Setting up the primary stage</li>
+ * </ul>
+ * 
+ * @author [Joseph Scarpulla and Roger Ramirez]
+ * @version 1.0
+ */
+
 package model;
 
 import javafx.application.Application;
@@ -12,6 +30,12 @@ import java.util.Set;
 
 public class Photos extends Application {
 
+    /**
+     * Starts the JavaFX application and sets up the primary stage.
+     * 
+     * @param primaryStage the primary stage for this application
+     * @throws Exception if an error occurs during the loading of the FXML file
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/photosfx/login.fxml"));
@@ -25,7 +49,11 @@ public class Photos extends Application {
         });
     }
 
-
+    /**
+     * The main method to launch the JavaFX application.
+     * 
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         // User stock = new User("stock");
         // Data.addUser(stock);
