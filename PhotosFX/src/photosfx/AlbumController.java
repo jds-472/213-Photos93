@@ -161,10 +161,6 @@ public class AlbumController {
             }
             Data.getCurrentAlbum().addPhoto(newPhoto); //have to check if photo is a copy here
             Data.saveData(); //save after adding
-            System.out.println("photo gets added");
-            for (Photo photo : Data.getCurrentAlbum().getPhotos()) {
-                System.out.println(photo.getCaption());
-            }
             refresh();
         }
     }

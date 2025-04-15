@@ -175,18 +175,6 @@ public class Data {
             if (obj instanceof Set<?>) {
                 users = (Set<User>) obj;
             }
-            for (User user : users) {
-                System.out.println(user);
-                for (Album album : user.getAlbums()) {
-                    System.out.println("  " + album);
-                    for (Photo photo : album.getPhotos()) {
-                        System.out.println("    " + photo);
-                        for (Tag tag : photo.getTags()) {
-                            System.out.println("      Tag: " + tag);
-                        }
-                    }
-                }
-            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

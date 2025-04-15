@@ -162,7 +162,6 @@ public class UserController {
             } else {
                 selectedAlbum.setName(newName); // Update the album name in the Album object
                 albumMap.remove(selected); // Remove the old name from the map
-                //Data.getCurrentUser().getAlbum(selected).setName(newName); // Update the album name in the user's albums
                 albums.set(albums.indexOf(selected), newName);
                 albumMap.put(newName, selectedAlbum); // Add the new name to the map
                 initialize();
