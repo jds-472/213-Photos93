@@ -160,11 +160,12 @@ public class UserController {
             } else if (albums.contains(newName)) {
                 showAlert("Album name already exists.");
             } else {
-                albumMap.remove(selected); // Remove the old name from the map
-                albums.set(albums.indexOf(selected), newName);
-                Data.getCurrentUser().getAlbum(selected).setName(newName); // Update the album name in the user's albums
                 selectedAlbum.setName(newName); // Update the album name in the Album object
+                albumMap.remove(selected); // Remove the old name from the map
+                //Data.getCurrentUser().getAlbum(selected).setName(newName); // Update the album name in the user's albums
+                albums.set(albums.indexOf(selected), newName);
                 albumMap.put(newName, selectedAlbum); // Add the new name to the map
+                initialize();
             }
         });
     }
